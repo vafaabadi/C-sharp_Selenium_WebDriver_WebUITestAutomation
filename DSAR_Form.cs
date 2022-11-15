@@ -152,7 +152,7 @@ namespace WebUITestAutomation
             //to run WinAppDriver
             Process.Start(@WinDriver);
             DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
-            desktopCapabilities.SetCapability("app", "Root");   // Added Path to environment variables???????????
+            desktopCapabilities.SetCapability("app", "Root");   
             WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
 
 
@@ -292,7 +292,7 @@ namespace WebUITestAutomation
             //to run WinAppDriver
             Process.Start(@WinDriver);
             DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
-            desktopCapabilities.SetCapability("app", "Root");   // Added Path to environment variables???????????
+            desktopCapabilities.SetCapability("app", "Root");   
             WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
 
 
