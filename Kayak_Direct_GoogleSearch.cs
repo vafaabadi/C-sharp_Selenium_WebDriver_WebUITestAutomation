@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -222,7 +223,118 @@ namespace WebUITestAutomation
         }
 
 
+        [TestMethod]
+        public void KayakDirectPurchase()
+        {
 
+            //to kick start Selenium ChromeDriver
+            new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+            var options = new ChromeOptions();
+            options.AddArgument("no-sandbox");
+
+
+            //starting browser
+            ChromeDriver driver = new ChromeDriver(options);
+            driver.Manage().Window.Maximize();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Navigate().GoToUrl("https://www.kayak.co.uk/flights");
+
+
+            Thread.Sleep(5000);
+            // click on "Accept" for privacy message box
+            driver.FindElementByXPath("/html/body/div[4]/div/div[3]/div/div/div[2]/div/div/div[1]/button").Click();
+            Thread.Sleep(3000);
+            // click on To? box to select destination
+            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").Click();
+            Thread.Sleep(2000);
+            // type "Ist" in destination box
+            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").SendKeys("Ist");
+            Thread.Sleep(2000);
+            // assert Istanbul listed
+            string Istanbul = driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/ul/li[1]/div/div[2]/div/span[1]").Text;
+            Assert.AreEqual(Istanbul, "Istanbul, Turkey");
+            // Check box for Istanbul Turkey
+            driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/ul/li[1]/div/div[3]/span/span/input").Click();
+            // click on Date - flight out
+            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[4]/div/div/div/div[1]/span/span[2]").Click();
+            Thread.Sleep(3000);
+            // click on date 31 January 2023
+            driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/div[37]").Click();
+            Thread.Sleep(2000);
+            // click on next month arrow for return
+            driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/div[2]/div/div[3]/button").Click();
+            Thread.Sleep(2000);
+            // click on 24 February for return
+            driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/div[26]").Click();
+            Thread.Sleep(2000);
+            // click on Search icon
+            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[5]").Click();
+            Thread.Sleep(4000);
+
+            //click to order based on "Cheapest"
+            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[2]/div[3]/div/div/div[2]/div[1]/a[1]/div[1]/div").Click();
+            Thread.Sleep(3000);
+
+
+
+            bool isFind = false;
+            for (int k = 0; k < 30; k++)
+            {
+
+                // captures names of airlines from the list of flights
+                IList<IWebElement> ListOfLights = driver.FindElementsByXPath("/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[5]/div[3]/div[1]/div/div/div/div/div/div/div[3]/div[1]");
+                int l = 0;
+
+                foreach (var ListOfLight in ListOfLights)
+                {
+                    l++;
+                    if (ListOfLight.Text.Equals("Turkish Airlines"))
+                    {
+                        IList<IWebElement> Directs = driver.FindElementsByXPath("(/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[5]/div[3]/div[1]/div/div/div/div/div/div/div[3]/div[1])[" + l + "]/../../div[2]/div/ol/li/div/div/div[4]/div[1]");
+                        Assert.AreEqual(Directs[0].Text, Directs[1].Text);
+                        // is flight out "direct"
+                        string isOutDirect = driver.FindElementByXPath("(/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[5]/div[3]/div[1]/div/div/div/div/div/div/div[3]/div[1])[" + l + "]/../../div[2]/div/ol/li/div/div/div[4]/div[1]").Text.Trim();
+                        Assert.AreEqual(isOutDirect, "direct");
+                        isFind = true;
+                        string ChepeastFare = driver.FindElementByXPath("(/html/body/div/div/main/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/a/span/span)[" + l + "]").Text.Trim();
+                        Console.WriteLine("Cheapest direct flight by Turkish Airlines from London to Istanbul for your specified date is: " + ChepeastFare);
+                        Console.WriteLine(l);
+                        // click on "View Deal"
+                        driver.FindElementByXPath("(/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[5]/div[3]/div[1]/div/div/div/div/div/div/div[3]/div[1])["+l+"]/../../../div[2]/div/div[2]/div/div/div[2]/div[2]/div").Click();
+                        break;
+
+                    }
+                    
+                }
+
+                if (isFind)
+                {
+                    break;
+                }
+                else
+                {
+                    // click on "show more results"
+                    driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[3]/div[1]/div/a").Click();
+                    Thread.Sleep(5000);
+                }
+
+
+            }
+
+
+            Assert.IsTrue(isFind, "Unable to find the direct Turkish Airline flight from London to Istanbul for the specified date. Sorry!");
+            
+            Thread.Sleep(3000);
+            // shift to new tab opened
+            driver.SwitchTo().Window(driver.WindowHandles[1]);
+            // wait until new tab loaded
+            var isNewTab = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            isNewTab.Until(ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"FlightsDetailsCollapsed\"]/h4/a/text()")));
+
+
+
+
+        }
 
 
 
