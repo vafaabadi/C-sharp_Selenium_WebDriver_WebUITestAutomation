@@ -45,7 +45,7 @@ namespace WebUITestAutomation
             ChromeDriver driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Navigate().GoToUrl("https://development.cifas.org.uk/");
+            driver.Navigate().GoToUrl("https://cifas.org.uk/");
             //wait until DSAR Form ison is visible
             Thread.Sleep(2000);
             driver.FindElementByCssSelector("#saveCookieSetting").Click();
@@ -166,7 +166,7 @@ namespace WebUITestAutomation
             ChromeDriver driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Navigate().GoToUrl("https://development.cifas.org.uk/");
+            driver.Navigate().GoToUrl("https://cifas.org.uk/");
             //wait until DSAR Form ison is visible
             Thread.Sleep(2000);
             driver.FindElementByCssSelector("#saveCookieSetting").Click();
@@ -306,7 +306,7 @@ namespace WebUITestAutomation
             ChromeDriver driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Navigate().GoToUrl("https://development.cifas.org.uk/");
+            driver.Navigate().GoToUrl("https://cifas.org.uk/");
             //wait until DSAR Form ison is visible
             Thread.Sleep(2000);
             driver.FindElementByCssSelector("#saveCookieSetting").Click();
