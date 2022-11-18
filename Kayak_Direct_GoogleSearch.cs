@@ -1,18 +1,23 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
-
+using WindowsInput;
+using WindowsInput.Native;
 
 
 
@@ -171,11 +176,11 @@ namespace WebUITestAutomation
             //click to order based on "Cheapest"
             driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[2]/div[3]/div/div/div[2]/div[1]/a[1]/div[1]/div").Click();
             Thread.Sleep(3000);
-           
+
 
 
             bool isFind = false;
-            for (int k = 0; k < 30; k++) 
+            for (int k = 0; k < 30; k++)
             {
 
                 // captures names of airlines from the list of flights
@@ -185,12 +190,12 @@ namespace WebUITestAutomation
                 foreach (var ListOfLight in ListOfLights)
                 {
                     l++;
-                    if(ListOfLight.Text.Equals("Turkish Airlines"))
+                    if (ListOfLight.Text.Equals("Turkish Airlines"))
                     {
-                        IList<IWebElement> Directs = driver.FindElementsByXPath("(/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[5]/div[3]/div[1]/div/div/div/div/div/div/div[3]/div[1])["+l+"]/../../div[2]/div/ol/li/div/div/div[4]/div[1]");
+                        IList<IWebElement> Directs = driver.FindElementsByXPath("(/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[5]/div[3]/div[1]/div/div/div/div/div/div/div[3]/div[1])[" + l + "]/../../div[2]/div/ol/li/div/div/div[4]/div[1]");
                         Assert.AreEqual(Directs[0].Text, Directs[1].Text);
                         // is flight out "direct"
-                        string isOutDirect = driver.FindElementByXPath("(/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[5]/div[3]/div[1]/div/div/div/div/div/div/div[3]/div[1])["+l+"]/../../div[2]/div/ol/li/div/div/div[4]/div[1]").Text.Trim();
+                        string isOutDirect = driver.FindElementByXPath("(/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[5]/div[3]/div[1]/div/div/div/div/div/div/div[3]/div[1])[" + l + "]/../../div[2]/div/ol/li/div/div/div[4]/div[1]").Text.Trim();
                         Assert.AreEqual(isOutDirect, "direct");
                         isFind = true;
                         string ChepeastFare = driver.FindElementByXPath("(/html/body/div/div/main/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/div/a/span/span)[" + l + "]").Text.Trim();
@@ -237,4 +242,5 @@ namespace WebUITestAutomation
 
 
     }
+    
 }
