@@ -1,0 +1,159 @@
+﻿            
+            
+            
+            
+            String WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
+            
+            
+            //to run WinAppDriver
+            Process.Start(@WinDriver);
+            DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
+            desktopCapabilities.SetCapability("app", "Root");
+            WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
+
+            //to kick start Selenium ChromeDriver
+            new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+            var options = new ChromeOptions();
+            options.AddArgument("no-sandbox");
+            //starting browser
+            ChromeDriver driver = new ChromeDriver(options);
+            driver.Manage().Window.Maximize();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Navigate().GoToUrl("https://www.kayak.co.uk/flights");
+
+
+            driver.FindElementByXPath("").Click();
+            Thread.Sleep(3000);
+
+            session.FindElementByXPath("").Click();
+
+            Thread.Sleep(2000);
+
+            InputSimulator sim = new InputSimulator();
+            sim.Keyboard.KeyPress(VirtualKeyCode.DOWN);
+            sim.Keyboard.KeyPress(VirtualKeyCode.DOWN);
+            sim.Keyboard.KeyPress(VirtualKeyCode.DOWN);
+            sim.Keyboard.KeyPress(VirtualKeyCode.DOWN);
+            sim.Keyboard.KeyPress(VirtualKeyCode.DOWN);
+            sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+
+            Thread.Sleep(2000);
+
+            driver.SwitchTo().Alert().Accept();
+
+            driver.SwitchTo().Frame(0);
+
+
+            //----------------------------------
+
+            string totalCases = driver.FindElement(By.XPath("//legend[contains(text(),'Cases')]")).Text;
+            string[] count = totalCases.Split(' ');
+            string[] totalValues = count[1].Split('(');
+            float pageCount = int.Parse(totalValues[1]) / 10;
+            float pageCountCompleted = pageCount + 1;
+            string caseID = "1110011";
+            List<string> DMR = new List<string>();
+            DMR.Add("C01A"); DMR.Add("C01B"); DMR.Add("C02A"); DMR.Add("C02B");
+            DMR.Add("C02C"); DMR.Add("C02D"); DMR.Add("C02E"); DMR.Add("C02F");
+            DMR.Add("C09B");
+
+            bool isFind = false;
+            int caseNumber = 0;
+
+            for (int i = 1; i <= pageCountCompleted; i++)
+            {
+                IList<IWebElement> allCases = driver.FindElements(By.XPath("//strong//a"));
+                for (int j = 0; j < allCases.Count; j++) 
+                {
+                    if (allCases[j].Text.Equals(caseID)) 
+                    {
+                        isFind = true;
+                        Console.WriteLine("case " + caseID + " found");
+                        caseNumber = j + 1;
+                        break;
+                    }
+                }
+                if (isFind)
+                    break;
+                else
+                {
+                    driver.FindElement(By.XPath("//a[text()='" + (i + 1) + "']")).Click();
+                }
+            }
+
+            Assert.IsTrue(isFind,"Unable to find the CaseID. Please check your CaseID:" + caseID);
+
+            IList<IWebElement> elements = driver.FindElements(By.XPath("//div//strong//a[text()='" + caseID + "']/../../..//span[@title='Reason for filing']//following-sibling::span"));
+            for (int i = 0; i < DMR.Count; i++)
+            {
+                bool isMatch = false;
+                for (int j = 0; j < elements.Count; j++)
+                {
+                    if (elements[j].Text.Contains(DMR[i]))
+                    {
+                        isMatch = true;
+                        break;
+                    }
+                }
+                if (isMatch == false)
+                {
+                    Assert.Fail("DMR value is not matched to the corresponsing case number. Please check the case number is:" + caseID);
+                }
+            }
+
+            //----------------------------------
+
+            Assert.IsTrue(findpage.GetDBName().Contains("Internal Fraud Database"), "Unable to change the database. please check.");
+
+
+            //------------------------------------
+
+
+            string totalFrauds = driver.FindElement(By.XPath("//legend[contains(text(),'Frauds')]")).Text;
+            string[] count = totalFrauds.Split(' ');
+            string[] totalValues = count[1].Split('(');
+            float pageCount = int.Parse(totalValues[1]) / 10;
+            float pageCountCompleted = pageCount + 1;
+            string fraudID = "1001";
+
+            bool isFind = false;
+
+            for (int i = 1; i <= pageCountCompleted; i++)
+            {
+                IList<IWebElement> allCases = driver.FindElements(By.XPath("//b//a"));
+                for (int j = 0; j < allCases.Count; j++)
+                {
+                    if (allCases[j].Text.Equals(fraudID))
+                    {
+                        isFind = true;
+                        Console.WriteLine("fraud " + fraudID + " found");
+                        
+                        break;
+                    }
+                }
+                if (isFind)
+                    break;
+                else
+                {
+                    driver.FindElement(By.XPath("//a[text()='" + (i + 1) + "']")).Click();
+                    Thread.Sleep(5000);
+                }
+            }
+
+            Assert.IsTrue(isFind, "Unable to find the fraudID. Please check your FraudID:" + fraudID);
+
+
+            //-------------------------------------
+
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddAdditionalCapability("pageLoadStrategy", "none");
+            driver = new ChromeDriver($"{AppDomain.CurrentDomain.BaseDirectory}", chromeOptions);
+            driver = new ChromeDriver($"{AppDomain.CurrentDomain.BaseDirectory}");
+            driver.Manage().Window.Maximize();
+            driver.Navigate().GoToUrl("https://www.google.co.uk");
+
+            //---------------------------------------
+
+            Assert.AreEqual("Mr Search Search - 01 Jan 2000", driver.FindElement(By.XPath("")).Text);
+
+            //----------------------------------------
