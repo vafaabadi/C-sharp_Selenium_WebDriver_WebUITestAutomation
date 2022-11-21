@@ -20,7 +20,7 @@ namespace WebUITestAutomation
 
 
         String WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
-        // master 
+
 
 
 
