@@ -121,7 +121,24 @@ namespace WebUITestAutomation
             driver.Quit();
 
 
+            foreach (var process in Process.GetProcessesByName("chrome.exe"))
+            {
+                process.Kill();
+            }
+            foreach (var process in Process.GetProcessesByName("WinAppDriver.exe"))
+            {
+                process.Kill();
+            }
+
+
+
+
+
+
         }
+
+
+
 
 
 
@@ -225,18 +242,30 @@ namespace WebUITestAutomation
             Assert.IsTrue(isFind, "Unable to find the direct Turkish Airline flight from London to Istanbul for the specified date. Sorry!");
 
 
+            driver.Quit();
+
+
+            foreach (var process in Process.GetProcessesByName("chrome.exe"))
+            {
+                process.Kill();
+            }
+            foreach (var process in Process.GetProcessesByName("WinAppDriver.exe"))
+            {
+                process.Kill();
+            }
+
+
+
+
+
+
+
+
+
+
         }
 
-
-
-
-
-
-
-
-
-
-
+        
 
 
 

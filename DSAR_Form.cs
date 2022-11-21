@@ -144,6 +144,17 @@ namespace WebUITestAutomation
             driver.Quit();
 
 
+            foreach (var process in Process.GetProcessesByName("chrome.exe"))
+            {
+                process.Kill();
+            }
+            foreach (var process in Process.GetProcessesByName("WinAppDriver.exe"))
+            {
+                process.Kill();
+            }
+
+
+
 
         }
 
@@ -279,8 +290,17 @@ namespace WebUITestAutomation
             Assert.AreEqual(strExpiryTime, true);
 
 
-
             driver.Quit();
+
+
+            foreach (var process in Process.GetProcessesByName("chrome.exe"))
+            {
+                process.Kill();
+            }
+            foreach (var process in Process.GetProcessesByName("WinAppDriver.exe"))
+            {
+                process.Kill();
+            }
 
 
 
@@ -467,8 +487,17 @@ namespace WebUITestAutomation
             Assert.AreEqual(strResponseIssued, "Response Issued");
 
 
-
             driver.Quit();
+
+
+            foreach (var process in Process.GetProcessesByName("chrome.exe"))
+            {
+                process.Kill();
+            }
+            foreach (var process in Process.GetProcessesByName("WinAppDriver.exe"))
+            {
+                process.Kill();
+            }
 
 
 
