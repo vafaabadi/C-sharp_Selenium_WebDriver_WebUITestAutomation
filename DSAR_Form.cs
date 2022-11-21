@@ -2,9 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-//using THIS IS CHANGED FOR TEST03 - one more push to Test03; another update on Test03 - update on master - branch out Test04 - one more commit
-//using THIS IS CHANGED FOR TEST03 - one more push to Test03; another update on Test03 - update on master - update to master
-// branching out 05 - update - more update
 using System.Threading;
 using System.Diagnostics;
 using OpenQA.Selenium.Remote;
@@ -21,8 +18,7 @@ namespace WebUITestAutomation
     public class DSAR_Form
     {
 
-        // comment added
-        // another change
+
         String WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
 
 
