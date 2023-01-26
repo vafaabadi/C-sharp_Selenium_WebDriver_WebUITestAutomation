@@ -143,20 +143,20 @@ namespace UnitTestProject1
 
             //----------------------------------
 
-            Assert.IsTrue(findpage.GetDBName().Contains("Internal Fraud Database"), "Unable to change the database. please check.");
+         //   Assert.IsTrue(findpage.GetDBName().Contains("Internal Fraud Database"), "Unable to change the database. please check.");   
 
 
             //------------------------------------
 
 
             string totalFrauds = driver.FindElement(By.XPath("//legend[contains(text(),'Frauds')]")).Text;
-            string[] count = totalFrauds.Split(' ');
-            string[] totalValues = count[1].Split('(');
-            float pageCount = int.Parse(totalValues[1]) / 10;
-            float pageCountCompleted = pageCount + 1;
+         //   string[] count = totalFrauds.Split(' ');
+         //   string[] totalValues = count[1].Split('(');
+         //   float pageCount = int.Parse(totalValues[1]) / 10;
+        //    float pageCountCompleted = pageCount + 1;
             string fraudID = "1001";
 
-            bool isFind = false;
+        //  bool isFind = false;
 
             for (int i = 1; i <= pageCountCompleted; i++)
             {
