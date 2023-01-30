@@ -228,11 +228,6 @@ namespace WebUITestAutomation
             //float pageCount = int.Parse(count[2]) / 6;
             //float pageCountCompleted = pageCount + 1;
 
-            //dummy comment
-            //dummy comment 2
-            //dummy comment 3
-            //dummy comment 4
-
 
             //for (int k = 0; k < pageCountCompleted; k++)
             //{
