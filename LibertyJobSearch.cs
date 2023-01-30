@@ -218,7 +218,7 @@ namespace WebUITestAutomation
             Console.WriteLine("Application succesfully submitted. Good luck!");
 
             driver.Quit();
-            
+
 
 
 
@@ -229,6 +229,8 @@ namespace WebUITestAutomation
             //float pageCountCompleted = pageCount + 1;
 
             //dummy comment
+            //dummy comment 2
+            //dummy comment 3
 
             //for (int k = 0; k < pageCountCompleted; k++)
             //{
