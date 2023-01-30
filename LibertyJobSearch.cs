@@ -229,7 +229,6 @@ namespace WebUITestAutomation
             //float pageCountCompleted = pageCount + 1;
 
             //dummy comment
-            //dummy comment 2
 
 
 
