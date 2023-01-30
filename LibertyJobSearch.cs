@@ -218,7 +218,7 @@ namespace WebUITestAutomation
             Console.WriteLine("Application succesfully submitted. Good luck!");
 
             driver.Quit();
-            driver.Quit();
+            
 
 
 
