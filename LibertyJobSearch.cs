@@ -178,16 +178,23 @@ namespace WebUITestAutomation
             PersonalInfo.IndustryDropDown.Click();
             driver.FindElementByXPath("/html/body/div/main/div/div/section/div/article/div/form/div/fieldset/div[6]/select/option[24]").Click();  // private equity
 
+            Thread.Sleep(2000);
+
+            // Upload CV to CV box without opening windows popup
+            string CV_ID_FullPath = "C:\\Users\\44741\\Desktop\\ID.jpg";
+            driver.FindElementByXPath("(//input[@type='file'])[1]").SendKeys(CV_ID_FullPath);
+            /*
             PersonalInfo.CVchoosefile.Click();
-
             Thread.Sleep(3000);
-
             session.FindElementByXPath("//*[@Name=\"ID\"]").Click();
-
             Thread.Sleep(3000);
-
             InputSimulator sim = new InputSimulator();
             sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+
+            //   <input type="file" id=.....
+            //   string File_with_FullPath="C:\Some_Folder\MyFile.txt";
+            //   driver.FindElement(By.XPath("//input[@type='file']")).SendKeys(File_with_FullPath);
+            */
 
 
             Thread.Sleep(3000);
