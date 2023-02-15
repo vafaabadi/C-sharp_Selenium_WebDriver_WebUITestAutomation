@@ -29,7 +29,8 @@ namespace WebUITestAutomation
     public class LibertyJobSearch
     {
         float pageCountCompleted;
-        string WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
+        //string WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
+        string BaseDirectory_Path = AppDomain.CurrentDomain.BaseDirectory;
 
 
         IWebDriver driver;
@@ -43,7 +44,14 @@ namespace WebUITestAutomation
         public void PendingAppForPortfolioManagerPosition()
         {
             //Run WinAppDriver
-            Process.Start(@WinDriver);
+            // AppDomain.CurrentDomain.BaseDirectory this is here: C:\Users\44741\source\repos\UnitTestProject1\bin\Debug . it is part of the solution folder
+            /*******
+            //Files need to be copied to C:\Users\44741\source\repos\UnitTestProject1 . when the solution is built, a copy of the files from C:\Users\44741\source\repos\UnitTestProject1 will be copied to C:\Users\44741\source\repos\UnitTestProject1\bin\Debug where the file will be read/run automatically.
+            *******/
+            string WinDriver_FullPath = BaseDirectory_Path + "\\WinAppDriver_baseDirectory\\WinAppDriver.exe";
+            Process.Start(@WinDriver_FullPath);
+            //Process.Start(@WinDriver);
+            //Process.Start($"WinAppDriver.exe", AppDomain.CurrentDomain.BaseDirectory); 
             DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
             desktopCapabilities.SetCapability("app", "Root");
             WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
@@ -181,7 +189,9 @@ namespace WebUITestAutomation
             Thread.Sleep(2000);
 
             // Upload CV to CV box without opening windows popup
-            string CV_ID_FullPath = "C:\\Users\\44741\\Desktop\\ID.jpg";
+            // AppDomain.CurrentDomain.BaseDirectory this is here: C:\Users\44741\source\repos\UnitTestProject1\bin\Debug . it is part of the solution folder
+            string CV_ID_Path = AppDomain.CurrentDomain.BaseDirectory;
+            string CV_ID_FullPath = CV_ID_Path+"\\ID.jpg";
             driver.FindElementByXPath("(//input[@type='file'])[1]").SendKeys(CV_ID_FullPath);
             /*
             PersonalInfo.CVchoosefile.Click();
@@ -208,6 +218,8 @@ namespace WebUITestAutomation
             // wait for the confirm submission load
             var SubmitPage = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
             SubmitPage.Until(ExpectedConditions.ElementIsVisible(By.XPath("/html/body/div/main/div/div/section/div/article/div/form/div/fieldset/div[1]/div[1]/div")));
+
+            Thread.Sleep(2000);
 
             ////submit bttn
             //driver.FindElementByXPath("/html/body/div/main/div/div/section/div/article/div/form/div/fieldset/div[2]/fieldset/div/button").Click();
@@ -303,7 +315,9 @@ namespace WebUITestAutomation
         public void SubmitAppForPortfolioManagerPosition()
         {
             //Run WinAppDriver
-            Process.Start(@WinDriver);
+            // AppDomain.CurrentDomain.BaseDirectory this is here: C:\Users\44741\source\repos\UnitTestProject1\bin\Debug . it is part of the solution folder
+            string WinDriver_FullPath = BaseDirectory_Path + "\\WinAppDriver_baseDirectory\\WinAppDriver.exe";
+            Process.Start(@WinDriver_FullPath);
             DesiredCapabilities desktopCapabilities= new DesiredCapabilities();
             desktopCapabilities.SetCapability("app", "Root");
             WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
@@ -395,7 +409,7 @@ namespace WebUITestAutomation
                     if (position.Text.Equals("Portfolio Manager"))
                     {
                         string isLocation = driver.FindElementByXPath("/html/body/div/main/div/div/section/div[3]/div[2]/article[" + l + "] /div/div/div/span[1]").Text.Trim();
-                        Assert.AreEqual(isLocation, "Spain");
+                        Assert.AreEqual(isLocation, "Milan. Italy");
                         isFind = true;
                         //click on Apply for Portfolio Manager
                         driver.FindElementByXPath("/html/body/div/main/div/div/section/div[3]/div[2]/article[" + l + "]/div/div/a").Click();
@@ -438,16 +452,19 @@ namespace WebUITestAutomation
             PersonalInfo.IndustryDropDown.Click();
             driver.FindElementByXPath("/html/body/div/main/div/div/section/div/article/div/form/div/fieldset/div[6]/select/option[24]").Click();  // private equity
 
+
+            string CV_ID_Path = AppDomain.CurrentDomain.BaseDirectory;
+            string CV_ID_FullPath = CV_ID_Path + "\\ID.jpg";
+            driver.FindElementByXPath("(//input[@type='file'])[1]").SendKeys(CV_ID_FullPath);
+
+            /*
             PersonalInfo.CVchoosefile.Click();
-
             Thread.Sleep(3000);
-
             session.FindElementByXPath("//*[@Name=\"ID\"]").Click();
-
             Thread.Sleep(3000);
-
             InputSimulator sim = new InputSimulator();
             sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+            */
 
 
             Thread.Sleep(3000);

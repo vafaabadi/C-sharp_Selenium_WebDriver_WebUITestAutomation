@@ -31,7 +31,9 @@ namespace UnitTestProject1
         public void FindBook12()
         {
             //to run WinAppDriver
-            Process.Start(@WinDriver);
+            // AppDomain.CurrentDomain.BaseDirectory this is here: C:\Users\44741\source\repos\UnitTestProject1\bin\Debug . it is part of the solution folder
+            Process.Start($"WinAppDriver.exe", AppDomain.CurrentDomain.BaseDirectory);
+            //Process.Start(@WinDriver);
             DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
             desktopCapabilities.SetCapability("app", "Root");
             WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
