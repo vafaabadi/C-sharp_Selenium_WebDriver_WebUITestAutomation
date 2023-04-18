@@ -476,6 +476,7 @@
     <Compile Include="LibertyJobSearch_Pages\SearchPage.cs" />
     <Compile Include="LibertyJobSearch_Pages\WorkingForUsPage.cs" />
     <Compile Include="LibertyJobSearch_Pages\FirstPublicPage.cs" />
+    <Compile Include="OhoJobSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuhiBooks.cs" />
     <Compile Include="SpareCodes.cs" />
@@ -485,6 +486,9 @@
     <None Include="DSARform_ManualUpload_DataDriven.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Content Include="DummyCV.pdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <Content Include="BackOfCard.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
