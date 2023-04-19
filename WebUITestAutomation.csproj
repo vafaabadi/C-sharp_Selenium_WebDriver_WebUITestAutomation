@@ -469,6 +469,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DSAR_Form.cs" />
+    <Compile Include="GoogleMaps.cs" />
     <Compile Include="Kayak_Direct_GoogleSearch.cs" />
     <Compile Include="LibertyJobSearch.cs" />
     <Compile Include="LibertyJobSearch_Pages\CurrentOpportunitiesPage.cs" />
