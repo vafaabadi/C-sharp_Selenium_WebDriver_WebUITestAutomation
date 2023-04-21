@@ -18,7 +18,7 @@ using WindowsInput;
 
 
 
-namespace UnitTestProject1
+namespace WebUITestAutomation
 {
 
 

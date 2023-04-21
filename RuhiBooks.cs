@@ -14,7 +14,7 @@ using WindowsInput.Native;
 using System.Collections.Generic;
 using OpenQA.Selenium.Interactions;
 
-namespace UnitTestProject1
+namespace WebUITestAutomation
 {
     [TestClass]
     public class RuhiBooks

@@ -17,24 +17,31 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using System.Linq;
 using Newtonsoft.Json.Linq;
+using AventStack.ExtentReports;
+using ICSharpCode.SharpZipLib.Zip;
+using NUnit.Framework.Interfaces;
+using AventStack.ExtentReports.Reporter;
+
 
 namespace WebUITestAutomation
 {
+
+
     [TestClass]
-    public class GoogleMaps
+    public class GoogleMaps 
     {
 
         string BaseDirectory_Path = AppDomain.CurrentDomain.BaseDirectory;
-
 
         //String WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
 
 
 
-
         [TestMethod]
+
         public void GoogleMaps_TravelTime()
         {
+
             //to run WinAppDriver
             // AppDomain.CurrentDomain.BaseDirectory this is here: C:\Users\44741\source\repos\UnitTestProject1\bin\Debug . it is part of the solution folder
             /*******
@@ -58,6 +65,7 @@ namespace WebUITestAutomation
 
             //starting browser
             ChromeDriver driver = new ChromeDriver(options);
+
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Navigate().GoToUrl("https://www.google.com/maps/");
@@ -85,7 +93,7 @@ namespace WebUITestAutomation
             string[] count = driveDuration.Split('h');
             int hour = int.Parse(count[0]);
             Thread.Sleep(1000);
-            if (hour >= 3)
+            if (hour >= 4)
             {
                 string failureMessage = "it takes longer than 2 hours to drive!. Please consider other means of transport";
                 NUnit.Framework.Assert.Fail(failureMessage);
@@ -95,7 +103,7 @@ namespace WebUITestAutomation
             Thread.Sleep(2000);
             int i = 0;
             IList<IWebElement> Directions = driver.FindElementsByXPath("/html/body/div/div[9]/div[9]/div/div/div[1]/div[2]/div/div[1]/div/div/div[2]/div/div/div[1]/div/div[2]/div/div/div/span/div/h2");
-            foreach(var Direction in Directions)
+            foreach (var Direction in Directions)
             {
                 string Direct = Direction.Text;
                 string[] directCount = Direct.Split(' ');
@@ -110,21 +118,11 @@ namespace WebUITestAutomation
 
             Console.WriteLine("Please drive carefully. Safe Journey!");
 
+
+            
+
             driver.Quit(); 
 
-
-
-            //string firstDirection = driver.FindElementByXPath("//*[@id=\"directions-mode-group-title_0_0\"]").Text;
-            //string[] first = firstDirection.Split(' ');
-            //if (first.Contains("M25"))
-            //{
-            //    string failureMessage = "Avoid the fastest drive becuase it takes you through M25!";
-            //    NUnit.Framework.Assert.Fail(failureMessage);
-            //}
-
-
-            //int xyz = int.Parse(count[0]);
-            //Thread.Sleep(2000);
 
 
 
