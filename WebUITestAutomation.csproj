@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\NUnit3TestAdapter.4.4.2\build\net462\NUnit3TestAdapter.props" Condition="Exists('packages\NUnit3TestAdapter.4.4.2\build\net462\NUnit3TestAdapter.props')" />
   <Import Project="packages\Microsoft.Extensions.Configuration.UserSecrets.2.2.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props" Condition="Exists('packages\Microsoft.Extensions.Configuration.UserSecrets.2.2.0\build\netstandard2.0\Microsoft.Extensions.Configuration.UserSecrets.props')" />
   <Import Project="packages\NUnit.3.13.3\build\NUnit.props" Condition="Exists('packages\NUnit.3.13.3\build\NUnit.props')" />
   <Import Project="packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.props" Condition="Exists('packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.props')" />
@@ -477,29 +478,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DSAR_Form.cs" />
-    <Compile Include="GoogleMaps.cs" />
-    <Compile Include="Kayak_Direct_GoogleSearch.cs" />
-    <Compile Include="LibertyJobSearch.cs" />
+    <Compile Include="BaseCode\SetUp.cs" />
+    <Compile Include="BeforeMidNight.cs" />
+    <Compile Include="NextDay.cs" />
     <Compile Include="LibertyJobSearch_Pages\CurrentOpportunitiesPage.cs" />
     <Compile Include="LibertyJobSearch_Pages\PersonalInfoPage.cs" />
     <Compile Include="LibertyJobSearch_Pages\SearchPage.cs" />
     <Compile Include="LibertyJobSearch_Pages\WorkingForUsPage.cs" />
     <Compile Include="LibertyJobSearch_Pages\FirstPublicPage.cs" />
-    <Compile Include="OhoJobSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseCode\Base.cs" />
-    <Compile Include="RuhiBooks.cs" />
-    <Compile Include="SpareCodes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="DSARform_ManualUpload_DataDriven.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <Content Include="DummyCV.pdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="DSARform_ManualUpload_DataDriven_DataSource.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <Content Include="BackOfCard.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -522,6 +519,9 @@
     <Content Include="WinAppDriver_baseDirectory\MitaBroker.X.manifest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="PracticeForm_DataDriven_DataSource.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ID.jpg">
@@ -595,6 +595,7 @@
     <Error Condition="!Exists('packages\Microsoft.AspNetCore.Server.IIS.2.2.0\build\netstandard2.0\Microsoft.AspNetCore.Server.IIS.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.AspNetCore.Server.IIS.2.2.0\build\netstandard2.0\Microsoft.AspNetCore.Server.IIS.targets'))" />
     <Error Condition="!Exists('packages\Microsoft.AspNetCore.Server.IISIntegration.2.2.0\build\netstandard2.0\Microsoft.AspNetCore.Server.IISIntegration.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.AspNetCore.Server.IISIntegration.2.2.0\build\netstandard2.0\Microsoft.AspNetCore.Server.IISIntegration.targets'))" />
     <Error Condition="!Exists('packages\AspectInjector.2.6.0\build\netstandard2.0\AspectInjector.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\AspectInjector.2.6.0\build\netstandard2.0\AspectInjector.targets'))" />
+    <Error Condition="!Exists('packages\NUnit3TestAdapter.4.4.2\build\net462\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\NUnit3TestAdapter.4.4.2\build\net462\NUnit3TestAdapter.props'))" />
   </Target>
   <Import Project="packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.targets" Condition="Exists('packages\MSTest.TestAdapter.2.2.10\build\net46\MSTest.TestAdapter.targets')" />
   <Import Project="packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets" Condition="Exists('packages\MongoDB.Libmongocrypt.1.0.0\build\MongoDB.Libmongocrypt.targets')" />
