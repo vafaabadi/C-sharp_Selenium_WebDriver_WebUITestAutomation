@@ -1,101 +1,121 @@
-﻿using AngleSharp.Dom;
-using AventStack.ExtentReports;
-using AventStack.ExtentReports.Reporter;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using AventStack.ExtentReports;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
 
-
-
-
 namespace WebUITestAutomation
 {
-    
+
+
     [TestFixture]
     public class Base
     {
 
-        IWebDriver driver;
 
+        public WindowsDriver<WindowsElement> session;
+        public ChromeDriver driver;
+        
         string BaseDirectory_Path = AppDomain.CurrentDomain.BaseDirectory;
 
-        public ExtentReports extent;
+        public NUnit.Framework.TestContext TestContext;
+        public static ExtentReports extent;
         public ExtentTest test;
 
 
-        [OneTimeSetUp] 
-        public void SetUp() 
-        {
-
-            //string workingDirectory = Environment.CurrentDirectory;
-            //string projectDirectory = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
-            //String reportPath = projectDirectory + "\\index.html";
-            //String reportPath = "C:\\Users\\44741\\Desktop" + "\\TestReport.html";
-            String reportPath = BaseDirectory_Path + "\\TestReport.html";
-            var htmlReporter = new ExtentHtmlReporter(reportPath); 
-            extent = new ExtentReports();
-            extent.AttachReporter(htmlReporter);
-            extent.AddSystemInfo("Host name", "Local host");
-            extent.AddSystemInfo("Environment", "QA");
-            extent.AddSystemInfo("User name", "Vafa Abadi");
-
-
-        }
 
         [SetUp]
         public void StartBrowser()
         {
+
             test = extent.CreateTest(NUnit.Framework.TestContext.CurrentContext.Test.Name);
+
+            //to run WinAppDriver
+            // AppDomain.CurrentDomain.BaseDirectory this is here: C:\Users\44741\source\repos\UnitTestProject1\bin\Debug . it is part of the solution folder
+            /*******
+            //Files need to be copied to C:\Users\44741\source\repos\UnitTestProject1 . when the solution is built, a copy of the files from C:\Users\44741\source\repos\UnitTestProject1 will be copied to C:\Users\44741\source\repos\UnitTestProject1\bin\Debug where the file will be read/run automatically.
+            *******/
+            string WinDriver_FullPath = BaseDirectory_Path + "\\WinAppDriver_baseDirectory\\WinAppDriver.exe";
+            Process.Start(@WinDriver_FullPath);
+            //Process.Start($"WinAppDriver.exe", AppDomain.CurrentDomain.BaseDirectory);
+            //Process.Start(@WinDriver);
+            DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
+            desktopCapabilities.SetCapability("app", "Root");
+            WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
+
+
+            //to kick start Selenium ChromeDriver
+            new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+            var options = new ChromeOptions();
+            options.AddArgument("incognito");
+            //options.AddArgument("no-sandbox");
+
+
+            //starting browser
+            driver = new ChromeDriver(options);
+
+            driver.Manage().Window.Maximize();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
+
 
         }
 
 
+
+
+
+
         [TearDown]
-        public void AfterTest(ChromeDriver driver)
+        public void AfterTest()
         {
 
-            var status = NUnit.Framework.TestContext.CurrentContext.Result.Outcome.Status;
-            var stacktrace = NUnit.Framework.TestContext.CurrentContext.Result.StackTrace;
+            var status = TestContext.CurrentContext.Result.Outcome.Status;
+            var stacktrace = TestContext.CurrentContext.Result.StackTrace;
 
             DateTime time = DateTime.Now;
             String fileName = "Screenshot_" + time.ToString("hh_mm_ss") + ".png";
 
             if (status == NUnit.Framework.Interfaces.TestStatus.Failed)
             {
-                test.Fail("Test Failed", captureScreenshot(driver, fileName));
+                test.Fail("Test Failed", driver is null ? null : captureScreenshot(driver, fileName));
+                //test.Fail("Test Failed").AddScreenCaptureFromPath(fileName);
                 test.Log(Status.Fail, "test failed with logtrace" + stacktrace);
             }
             else if (status == NUnit.Framework.Interfaces.TestStatus.Passed)
             {
-
+                test.Pass("Test Passed");
             }
-            extent.Flush();
+            
 
         }
 
+
+
+
+
         public MediaEntityModelProvider captureScreenshot(ChromeDriver driver, String screenShotName)
         {
-            ITakesScreenshot ts = (ITakesScreenshot)driver;
+            ITakesScreenshot ts = driver;
             var screenshot = ts.GetScreenshot().AsBase64EncodedString;
 
             return MediaEntityBuilder.CreateScreenCaptureFromBase64String(screenshot, screenShotName).Build();
 
         }
 
+       
 
-        
+
+
+
+
+
 
     }
 }
