@@ -49,6 +49,15 @@ namespace WebUITestAutomation
         PersonalInfoMap PersonalInfo;
 
 
+        //[Test]
+        //public void JustWindoesDriver()
+        //{
+        //    session.FindElementByXPath("//*[@name='Search']").Click();
+        //    session.FindElementByXPath("//tagname[@attribute='value']").Click();
+
+        //}
+
+
         [Test]
         public void PendingAppForPortfolioManagerPosition()
         {

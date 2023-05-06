@@ -27,9 +27,34 @@ namespace WebUITestAutomation
     public class BeforeMidNight : Base
     {
 
-        string BaseDirectory_Path = AppDomain.CurrentDomain.BaseDirectory;
+        //string BaseDirectory_Path = AppDomain.CurrentDomain.BaseDirectory;
 
         //String WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
+
+
+        [Test]
+        public void JustWindoesDriver()
+        {
+
+            //string WinDriver_FullPath = BaseDirectory_Path + "\\WinAppDriver_baseDirectory\\WinAppDriver.exe";
+            //Process.Start(@WinDriver_FullPath);
+            //Process.Start($"WinAppDriver.exe", AppDomain.CurrentDomain.BaseDirectory);
+            //Process.Start(@WinDriver);
+            DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
+            desktopCapabilities.SetCapability("app", "Root");
+            WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
+
+            session.FindElementByXPath("//*[@Name='Reload']").Click();
+
+
+
+
+
+        }
+
+
+
+
 
 
 

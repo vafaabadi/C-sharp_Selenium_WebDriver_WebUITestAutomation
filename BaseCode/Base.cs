@@ -21,8 +21,8 @@ namespace WebUITestAutomation
 
         public WindowsDriver<WindowsElement> session;
         public ChromeDriver driver;
-        
-        string BaseDirectory_Path = AppDomain.CurrentDomain.BaseDirectory;
+
+        public string BaseDirectory_Path = AppDomain.CurrentDomain.BaseDirectory;
 
         public NUnit.Framework.TestContext TestContext;
         public static ExtentReports extent;
@@ -45,11 +45,10 @@ namespace WebUITestAutomation
             Process.Start(@WinDriver_FullPath);
             //Process.Start($"WinAppDriver.exe", AppDomain.CurrentDomain.BaseDirectory);
             //Process.Start(@WinDriver);
-            DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
-            desktopCapabilities.SetCapability("app", "Root");
-            WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
-
-
+            //DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
+            //desktopCapabilities.SetCapability("app", "Root");
+            //WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
+            
             //to kick start Selenium ChromeDriver
             new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
             var options = new ChromeOptions();
