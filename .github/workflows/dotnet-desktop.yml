@@ -50,15 +50,12 @@ jobs:
         
     - name: Run UnitTests
       run: ./NUnit.ConsoleRunner.3.13.0/tools/nunit3-console.exe  bin/Release/UnitTestProject1.dll
-      
-    - uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        path: bin/Release/*.jpg
+    
         
     - uses: actions/upload-artifact@v3
       if: always()
       with:
+        name: report
         path:  bin/Release/index.html 
 
      
