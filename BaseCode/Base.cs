@@ -75,14 +75,7 @@ namespace WebUITestAutomation
         [TearDown]
         public void AfterTest()
         {
-            try
-            {
-                driver.Quit();
-            }
-            catch
-            {
-                //ignore
-            }
+            
 
             var status = TestContext.CurrentContext.Result.Outcome.Status;
             var stacktrace = TestContext.CurrentContext.Result.StackTrace;
@@ -95,20 +88,12 @@ namespace WebUITestAutomation
                 test.Fail("Test Failed", driver is null ? null : captureScreenshot(driver, fileName));
                 //test.Fail("Test Failed").AddScreenCaptureFromPath(fileName);
                 test.Log(Status.Fail, "test failed with logtrace" + stacktrace);
+                driver?.Quit();
             }
             else if (status == NUnit.Framework.Interfaces.TestStatus.Passed)
             {
                 test.Pass("Test Passed");
-            }
-
-            try
-            {
-                windriver.Kill();
-            }
-            catch
-            {
-
-            }
+            }           
         }
 
 
