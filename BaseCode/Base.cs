@@ -75,6 +75,7 @@ namespace WebUITestAutomation
         [TearDown]
         public void AfterTest()
         {
+            driver.Quit();
 
             var status = TestContext.CurrentContext.Result.Outcome.Status;
             var stacktrace = TestContext.CurrentContext.Result.StackTrace;
