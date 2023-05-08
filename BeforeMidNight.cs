@@ -32,8 +32,7 @@ namespace WebUITestAutomation
         //String WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
 
 
-        [Test, MaxTime(10000)]
-        [Ignore("")]
+        [Test]
         public void JustWindoesDriver()
         {
 
@@ -60,8 +59,7 @@ namespace WebUITestAutomation
 
 
 
-        [Test, MaxTime(10000)]
-        [Ignore("")]
+        [Test]
         public void GoogleMaps_TravelTime()
         {
             
@@ -339,8 +337,7 @@ namespace WebUITestAutomation
 
 
 
-        [Test, MaxTime(10000)]
-        [Ignore("")]
+        [Test]
         public void KayakDirect()
         {
             
@@ -447,8 +444,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test, MaxTime(10000)]
-        [Ignore("")]
+        [Test]
         public void DSARform_UpToHooyu()
         {
             
@@ -564,8 +560,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test, MaxTime(10000)]
-        [Ignore("")]
+        [Test]
         public void DSARform_UploadLater()
         {
             
@@ -698,8 +693,7 @@ namespace WebUITestAutomation
 
 
 
-        [Test, MaxTime(10000)]
-        [Ignore("")]
+        [Test]
         public void DSARform_ManualUpload()
         {
             
@@ -900,8 +894,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test, MaxTime(10000)]
-        [Ignore("")]
+        [Test]
         public void DSARform_ManualUpload_DataDriven()
         {
 
@@ -1140,8 +1133,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test, MaxTime(10000)]
-        [Ignore("")]
+        [Test]
         public void PracticeForm_DataDriven()
         {
 
