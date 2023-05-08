@@ -58,7 +58,7 @@ namespace WebUITestAutomation
         //}
 
 
-        [Test]
+        [Test, MaxTime(30000)]
         public void PendingAppForPortfolioManagerPosition()
         {
             
@@ -307,7 +307,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test]
+        [Test, MaxTime(60000)]
         public void SubmitAppForPortfolioManagerPosition()
         {
             
@@ -537,7 +537,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test]
+        [Test, MaxTime(30000)]
         public void FindBook12()
         {
             float pageCountCompleted;
@@ -649,7 +649,7 @@ namespace WebUITestAutomation
 
 
 
-        [Test]
+        [Test,MaxTime(20000)]
         public void SampleSpareCodes()
         {
 

@@ -32,7 +32,7 @@ namespace WebUITestAutomation
         //String WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
 
 
-        [Test]
+        [Test, MaxTime(30000)]
         public void JustWindoesDriver()
         {
 
@@ -59,7 +59,7 @@ namespace WebUITestAutomation
 
 
 
-        [Test]
+        [Test, MaxTime(30000)]
         public void GoogleMaps_TravelTime()
         {
             
@@ -127,7 +127,7 @@ namespace WebUITestAutomation
 
 
 
-        [Test]
+        [Test, MaxTime(30000)]
         public void OHO_QA()
         {
             
@@ -235,7 +235,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test]
+        [Test, MaxTime(30000)]
         public void KayakViaGoogleSearch()
         {
             
@@ -336,7 +336,7 @@ namespace WebUITestAutomation
 
 
 
-        [Test]
+        [Test, MaxTime(30000)]
         public void KayakDirect()
         {
             
@@ -443,7 +443,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test]
+        [Test, MaxTime(30000)]
         public void DSARform_UpToHooyu()
         {
             
@@ -559,7 +559,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test]
+        [Test, MaxTime(30000)]
         public void DSARform_UploadLater()
         {
             
@@ -692,7 +692,7 @@ namespace WebUITestAutomation
 
 
 
-        [Test]
+        [Test, MaxTime(30000)]
         public void DSARform_ManualUpload()
         {
             
@@ -893,7 +893,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test]
+        [Test, MaxTime(30000)]
         public void DSARform_ManualUpload_DataDriven()
         {
 
@@ -1132,7 +1132,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test]
+        [Test, MaxTime(30000)]
         public void PracticeForm_DataDriven()
         {
 
@@ -1211,7 +1211,7 @@ namespace WebUITestAutomation
 
 
 
-        [Test, TestCaseSource("GetTestData")]    // , TestCase(TestName = "Tname")
+        [Test, TestCaseSource("GetTestData"), MaxTime(30000)]    // , TestCase(TestName = "Tname")
         public void PracticeForm_IndividualRecord(string Fname, string Sname, string DOB)
         {
             
