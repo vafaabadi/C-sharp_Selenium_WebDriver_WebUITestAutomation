@@ -27,6 +27,7 @@ namespace WebUITestAutomation
         public NUnit.Framework.TestContext TestContext;
         public static ExtentReports extent;
         public ExtentTest test;
+        private Process windriver;
 
 
 
@@ -42,7 +43,7 @@ namespace WebUITestAutomation
             //Files need to be copied to C:\Users\44741\source\repos\UnitTestProject1 . when the solution is built, a copy of the files from C:\Users\44741\source\repos\UnitTestProject1 will be copied to C:\Users\44741\source\repos\UnitTestProject1\bin\Debug where the file will be read/run automatically.
             *******/
             string WinDriver_FullPath = BaseDirectory_Path + "\\WinAppDriver_baseDirectory\\WinAppDriver.exe";
-            Process.Start(@WinDriver_FullPath);
+            windriver = Process.Start(@WinDriver_FullPath);
             //Process.Start($"WinAppDriver.exe", AppDomain.CurrentDomain.BaseDirectory);
             //Process.Start(@WinDriver);
             //DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
@@ -91,8 +92,8 @@ namespace WebUITestAutomation
             {
                 test.Pass("Test Passed");
             }
-            
 
+            windriver.Kill();
         }
 
 
