@@ -129,8 +129,7 @@ namespace WebUITestAutomation
 
 
 
-        [Test, MaxTime(10000)]
-        [Ignore("")]
+        [Test]
         public void OHO_QA()
         {
             
@@ -238,8 +237,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test, MaxTime(10000)]
-        [Ignore("")]
+        [Test]
         public void KayakViaGoogleSearch()
         {
             
@@ -1221,7 +1219,7 @@ namespace WebUITestAutomation
 
 
 
-        [Test, TestCaseSource("GetTestData"), MaxTime(10000)]    // , TestCase(TestName = "Tname")
+        [Test, TestCaseSource("GetTestData")]    // , TestCase(TestName = "Tname")
         public void PracticeForm_IndividualRecord(string Fname, string Sname, string DOB)
         {
             
