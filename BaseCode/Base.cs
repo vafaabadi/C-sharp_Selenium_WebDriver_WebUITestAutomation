@@ -75,7 +75,14 @@ namespace WebUITestAutomation
         [TearDown]
         public void AfterTest()
         {
-            driver.Quit();
+            try
+            {
+                driver.Quit();
+            }
+            catch
+            {
+                //ignore
+            }
 
             var status = TestContext.CurrentContext.Result.Outcome.Status;
             var stacktrace = TestContext.CurrentContext.Result.StackTrace;
@@ -94,7 +101,14 @@ namespace WebUITestAutomation
                 test.Pass("Test Passed");
             }
 
-            windriver.Kill();
+            try
+            {
+                windriver.Kill();
+            }
+            catch
+            {
+
+            }
         }
 
 
