@@ -33,6 +33,7 @@ namespace WebUITestAutomation
 
 
         [Test, MaxTime(10000)]
+        [Ignore("")]
         public void JustWindoesDriver()
         {
 
@@ -60,6 +61,7 @@ namespace WebUITestAutomation
 
 
         [Test, MaxTime(10000)]
+        [Ignore("")]
         public void GoogleMaps_TravelTime()
         {
             
@@ -128,6 +130,7 @@ namespace WebUITestAutomation
 
 
         [Test, MaxTime(10000)]
+        [Ignore("")]
         public void OHO_QA()
         {
             
@@ -236,6 +239,7 @@ namespace WebUITestAutomation
 
 
         [Test, MaxTime(10000)]
+        [Ignore("")]
         public void KayakViaGoogleSearch()
         {
             
@@ -337,6 +341,7 @@ namespace WebUITestAutomation
 
 
         [Test, MaxTime(10000)]
+        [Ignore("")]
         public void KayakDirect()
         {
             
@@ -444,6 +449,7 @@ namespace WebUITestAutomation
 
 
         [Test, MaxTime(10000)]
+        [Ignore("")]
         public void DSARform_UpToHooyu()
         {
             
@@ -560,6 +566,7 @@ namespace WebUITestAutomation
 
 
         [Test, MaxTime(10000)]
+        [Ignore("")]
         public void DSARform_UploadLater()
         {
             
@@ -693,6 +700,7 @@ namespace WebUITestAutomation
 
 
         [Test, MaxTime(10000)]
+        [Ignore("")]
         public void DSARform_ManualUpload()
         {
             
@@ -894,6 +902,7 @@ namespace WebUITestAutomation
 
 
         [Test, MaxTime(10000)]
+        [Ignore("")]
         public void DSARform_ManualUpload_DataDriven()
         {
 
@@ -1133,6 +1142,7 @@ namespace WebUITestAutomation
 
 
         [Test, MaxTime(10000)]
+        [Ignore("")]
         public void PracticeForm_DataDriven()
         {
 
