@@ -35,28 +35,12 @@ namespace WebUITestAutomation
         [Test]
         public void JustWindoesDriver()
         {
-
-            //string WinDriver_FullPath = BaseDirectory_Path + "\\WinAppDriver_baseDirectory\\WinAppDriver.exe";
-            //Process.Start(@WinDriver_FullPath);
-            //Process.Start($"WinAppDriver.exe", AppDomain.CurrentDomain.BaseDirectory);
-            //Process.Start(@WinDriver);
             DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
             desktopCapabilities.SetCapability("app", "Root");
             WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
 
             session.FindElementByXPath("//*[@Name='Reload']").Click();
-
-
-
-
-
         }
-
-
-
-
-
-
 
 
         [Test]
@@ -112,9 +96,6 @@ namespace WebUITestAutomation
             }
 
             Console.WriteLine("Please drive carefully. Safe Journey!");
-
-
-
 
             driver.Quit();
 
@@ -897,6 +878,15 @@ namespace WebUITestAutomation
         [Test]
         public void DSARform_ManualUpload_DataDriven()
         {
+            //close driver window which was created in base.cs
+            try
+            {
+                driver?.Quit();
+            }
+            catch (Exception)
+            {
+                //ignore;
+            }
 
             using (var reader = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\DSARform_ManualUpload_DataDriven_DataSource.csv"))
             {
@@ -1136,6 +1126,7 @@ namespace WebUITestAutomation
         [Test]
         public void PracticeForm_DataDriven()
         {
+            driver.Quit();
 
             using (var reader = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "\\PracticeForm_DataDriven_DataSource.csv"))
             {
@@ -1167,8 +1158,8 @@ namespace WebUITestAutomation
                     /*******
                     //Files need to be copied to C:\Users\44741\source\repos\UnitTestProject1 . when the solution is built, a copy of the files from C:\Users\44741\source\repos\UnitTestProject1 will be copied to C:\Users\44741\source\repos\UnitTestProject1\bin\Debug where the file will be read/run automatically.
                     *******/
-                    string WinDriver_FullPath = BaseDirectory_Path + "\\WinAppDriver_baseDirectory\\WinAppDriver.exe";
-                    Process.Start(@WinDriver_FullPath);
+                    //string WinDriver_FullPath = BaseDirectory_Path + "\\WinAppDriver_baseDirectory\\WinAppDriver.exe";
+                    //Process.Start(@WinDriver_FullPath);
                     //Process.Start($"WinAppDriver.exe", AppDomain.CurrentDomain.BaseDirectory);
                     //Process.Start(@WinDriver);
                     DesiredCapabilities desktopCapabilities = new DesiredCapabilities();

@@ -93,11 +93,20 @@ namespace WebUITestAutomation
             else if (status == NUnit.Framework.Interfaces.TestStatus.Passed)
             {
                 test.Pass("Test Passed");
-            }           
+            }
+            
+
+
+            windriver.Kill();
+            try
+            {
+                driver?.Quit();
+            }
+            catch (Exception)
+            {
+                //ignore;
+            }
         }
-
-
-
 
 
         public MediaEntityModelProvider captureScreenshot(ChromeDriver driver, String screenShotName)
