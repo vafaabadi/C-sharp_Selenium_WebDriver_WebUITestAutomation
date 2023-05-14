@@ -68,7 +68,8 @@ namespace WebUITestAutomation
             // method of transport: drive
             driver.FindElementByXPath("//*[@id=\"omnibox-directions\"]/div/div[2]/div/div/div/div[2]/button/img").Click();
             Thread.Sleep(2000);
-            string driveDuration = driver.FindElementByXPath("//*[@id=\"section-directions-trip-0\"]/div[1]/div[1]/div[1]/div[1]/span[1]").Text;
+            string driveDuration = driver.FindElementByXPath("//*[@id=\"section-directions-trip-0\"]/div[1]/div/div[1]/div[1]").Text;
+                                                              //*[@id="section-directions-trip-0"]/div[1]/div/div[1]/div[1]
             string[] count = driveDuration.Split('h');
             int hour = int.Parse(count[0]);
             Thread.Sleep(1000);
