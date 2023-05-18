@@ -54,7 +54,6 @@ namespace WebUITestAutomation
         //{
         //    session.FindElementByXPath("//*[@name='Search']").Click();
         //    session.FindElementByXPath("//tagname[@attribute='value']").Click();
-
         //}
 
 
@@ -307,7 +306,8 @@ namespace WebUITestAutomation
         }
 
 
-       // [Test, MaxTime(10000)]
+        [Test]
+        //[Test, MaxTime(10000)]
         public void SubmitAppForPortfolioManagerPosition()
         {
             
@@ -644,9 +644,6 @@ namespace WebUITestAutomation
 
 
         }
-
-
-
 
 
         [Test]
