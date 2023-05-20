@@ -329,9 +329,9 @@ namespace WebUITestAutomation
             driver.Navigate().GoToUrl("https://www.kayak.co.uk/flights");
 
 
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
             // click on "Accept" for privacy message box
-            driver.FindElementByCssSelector("#cJMy > div:nth-child(18) > div > div.dDYU.dDYU-mod-theme-default.dDYU-mod-variant-default.dDYU-mod-padding-none.dDYU-mod-position-top.dDYU-mod-direction-none.dDYU-mod-visible.a11y-focus-outlines.dDYU-mod-shadow-elevation-one > div > div > div.dDYU-body > div > div > div.iInN-footer > button").Click();
+            driver.FindElementByXPath("//*[@id=\"lgcl\"]/div[7]/div/div[3]/div/div/div[2]/div/div/div[1]/button").Click();
             Thread.Sleep(3000);
             // click on To? box to select destination
             driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").Click();
