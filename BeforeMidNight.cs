@@ -60,7 +60,7 @@ namespace WebUITestAutomation
             driver.FindElementByXPath("//*[@id=\"QA0Szd\"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[4]/div[1]/button/span/img").Click();
             //reserve destination to starting point
             driver.FindElementByXPath("//*[@id=\"omnibox-directions\"]/div/div[3]/div[2]/button/div").Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
             //type in destination
             driver.FindElementByXPath("//*[@id=\"sb_ifc52\"]/input").SendKeys("31 Springhead, Tunbridge Wells TN2 3NY");
             InputSimulator sim1 = new InputSimulator();
@@ -331,7 +331,7 @@ namespace WebUITestAutomation
 
             Thread.Sleep(5000);
             // click on "Accept" for privacy message box
-            driver.FindElementByCssSelector("#c8xd8 > div:nth-child(19) > div > div.dDYU.dDYU-mod-theme-default.dDYU-mod-variant-default.dDYU-mod-padding-none.dDYU-mod-position-top.dDYU-mod-direction-none.dDYU-mod-visible.a11y-focus-outlines.dDYU-mod-shadow-elevation-one > div > div > div.dDYU-body > div > div > div.iInN-footer > button > div.Iqt3-button-container").Click();
+            driver.FindElementByCssSelector("#Ku8Y > div:nth-child(17) > div > div.dDYU.dDYU-mod-theme-default.dDYU-mod-variant-default.dDYU-mod-padding-none.dDYU-mod-position-top.dDYU-mod-direction-none.dDYU-mod-visible.a11y-focus-outlines.dDYU-mod-shadow-elevation-one > div > div > div.dDYU-body > div > div > div.iInN-footer > button > div.Iqt3-button-container > div").Click();
             Thread.Sleep(3000);
             // click on To? box to select destination
             driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").Click();
