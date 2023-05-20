@@ -157,3 +157,91 @@
             Assert.AreEqual("Mr Search Search - 01 Jan 2000", driver.FindElement(By.XPath("")).Text);
 
             //----------------------------------------
+
+            How to Set Up CI on Github Actions:
+
+            1.  Go to Actions under a repository, 
+            2.  Search workflow: .NET,
+            3.  Select the first option listed called ".Net" (for C#), click on Configure,
+            4.  Modify name of .yml file for your workflow,
+            5.  Paste the follwoing code to the body of yml file:
+
+
+
+            name: Run Unit Tests
+
+            on:
+              push:
+                branches: [ "master" ]
+              pull_request:
+                branches: [ "master" ]
+
+            jobs:
+
+              build:
+
+                strategy:
+                  matrix:
+                    configuration: [Release]
+
+                runs-on: windows-2019  # For a list of available runner types, refer to
+                                         # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+
+                env:
+                  Solution_Name: WebUITestAutomation.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
+
+                steps:
+                - name: Checkout
+                  uses: actions/checkout@v3
+                  with:
+                    fetch-depth: 0
+
+                # Install the .NET Core workload
+                - name: Install .NET Core
+                  uses: actions/setup-dotnet@v3
+                  with:
+                    dotnet-version: 6.0.x
+
+                # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
+                - name: Setup MSBuild.exe
+                  uses: microsoft/setup-msbuild@v1.0.2
+
+                - name: Setup NuGet
+                  uses: NuGet/setup-nuget@v1.0.5
+
+              #  - name: Restore Packages
+              #    run: nuget restore $env:Solution_Name
+
+                - name: Build solution
+                  run: msbuild $env:Solution_Name -t:restore,build -p:RestorePackagesConfig=true -property:Configuration=Release
+
+                - name: Install NUnit.ConsoleRunner
+                  run: nuget install NUnit.ConsoleRunner -Version 3.13.0 -DirectDownload -OutputDirectory .
+
+                - name: Run UnitTests
+                  run: ./NUnit.ConsoleRunner.3.13.0/tools/nunit3-console.exe  bin/Release/UnitTestProject1.dll
+
+
+                - uses: actions/upload-artifact@v3
+                  if: always()
+                  with:
+                    name: report
+                    path:  bin/Release/index.html 
+            
+
+
+
+
+            6.  Click on "Commit Changes",
+            7.  Add Description in the pop-up box,
+            8.  Click on "Commit Changes",
+            9.  Observe the yml file created under workflows directory (.github/workflows/FineIsHere.yml),
+            10. Click on Actions tab,
+            11. You observe the file/CI is already automatically running,
+            12. Once the job is done, Test Report artifact also created,
+            13. Artifact contains a folder having .html test report inside it for the inspection.
+
+
+
+
+

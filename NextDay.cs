@@ -1,4 +1,4 @@
-﻿//using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿/*
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
@@ -188,18 +188,18 @@ namespace WebUITestAutomation
             string CV_ID_Path = AppDomain.CurrentDomain.BaseDirectory;
             string CV_ID_FullPath = CV_ID_Path+"\\ID.jpg";
             driver.FindElementByXPath("(//input[@type='file'])[1]").SendKeys(CV_ID_FullPath);
-            /*
-            PersonalInfo.CVchoosefile.Click();
-            Thread.Sleep(3000);
-            session.FindElementByXPath("//*[@Name=\"ID\"]").Click();
-            Thread.Sleep(3000);
-            InputSimulator sim = new InputSimulator();
-            sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-
-            //   <input type="file" id=.....
-            //   string File_with_FullPath="C:\Some_Folder\MyFile.txt";
-            //   driver.FindElement(By.XPath("//input[@type='file']")).SendKeys(File_with_FullPath);
-            */
+            
+     //       PersonalInfo.CVchoosefile.Click();
+     //      Thread.Sleep(3000);
+     //       session.FindElementByXPath("//*[@Name=\"ID\"]").Click();
+     //       Thread.Sleep(3000);
+     //       InputSimulator sim = new InputSimulator();
+     //       sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+     //
+     //       //   <input type="file" id=.....
+     //       //   string File_with_FullPath="C:\Some_Folder\MyFile.txt";
+     //       //   driver.FindElement(By.XPath("//input[@type='file']")).SendKeys(File_with_FullPath);
+            
 
 
             Thread.Sleep(3000);
@@ -436,14 +436,14 @@ namespace WebUITestAutomation
             string CV_ID_FullPath = CV_ID_Path + "\\ID.jpg";
             driver.FindElementByXPath("(//input[@type='file'])[1]").SendKeys(CV_ID_FullPath);
 
-            /*
-            PersonalInfo.CVchoosefile.Click();
-            Thread.Sleep(3000);
-            session.FindElementByXPath("//*[@Name=\"ID\"]").Click();
-            Thread.Sleep(3000);
-            InputSimulator sim = new InputSimulator();
-            sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
-            */
+            
+    //        PersonalInfo.CVchoosefile.Click();
+    //        Thread.Sleep(3000);
+    //        session.FindElementByXPath("//*[@Name=\"ID\"]").Click();
+    //        Thread.Sleep(3000);
+    //        InputSimulator sim = new InputSimulator();
+    //        sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+            
 
 
             Thread.Sleep(3000);
@@ -817,3 +817,11 @@ namespace WebUITestAutomation
     }
 
 }
+
+
+
+
+
+
+
+*/

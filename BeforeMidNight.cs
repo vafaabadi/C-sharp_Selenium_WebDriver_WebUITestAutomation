@@ -1,5 +1,4 @@
 ﻿using System;
-//using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Threading;
@@ -219,7 +218,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test]
+/*        [Test]
         public void KayakViaGoogleSearch()
         {
             
@@ -315,7 +314,7 @@ namespace WebUITestAutomation
 
         }
 
-
+*/
 
 
 
@@ -427,7 +426,7 @@ namespace WebUITestAutomation
         }
 
 
-        [Test]
+/*        [Test]
         public void DSARform_UpToHooyu()
         {
             
@@ -542,8 +541,8 @@ namespace WebUITestAutomation
 
         }
 
-
-        [Test]
+*/
+/*        [Test]
         public void DSARform_UploadLater()
         {
             
@@ -673,8 +672,8 @@ namespace WebUITestAutomation
 
 
         }
-
-
+*/
+/*
 
         [Test]
         public void DSARform_ManualUpload()
@@ -876,8 +875,8 @@ namespace WebUITestAutomation
 
         }
 
-
-        [Test]
+*/
+/*        [Test]
         public void DSARform_ManualUpload_DataDriven()
         {
             //close driver window which was created in base.cs
@@ -923,9 +922,9 @@ namespace WebUITestAutomation
                     i++;
                     //to run WinAppDriver
                     // AppDomain.CurrentDomain.BaseDirectory this is here: C:\Users\44741\source\repos\UnitTestProject1\bin\Debug . it is part of the solution folder
-                    /*******
-                    //Files need to be copied to C:\Users\44741\source\repos\UnitTestProject1 . when the solution is built, a copy of the files from C:\Users\44741\source\repos\UnitTestProject1 will be copied to C:\Users\44741\source\repos\UnitTestProject1\bin\Debug where the file will be read/run automatically.
-                    *******/
+                
+              //--> //Files need to be copied to C:\Users\44741\source\repos\UnitTestProject1 . when the solution is built, a copy of the files from C:\Users\44741\source\repos\UnitTestProject1 will be copied to C:\Users\44741\source\repos\UnitTestProject1\bin\Debug where the file will be read/run automatically.
+                
                     string WinDriver_FullPath = BaseDirectory_Path + "\\WinAppDriver_baseDirectory\\WinAppDriver.exe";
                     Process.Start(@WinDriver_FullPath);
                     //Process.Start($"WinAppDriver.exe", AppDomain.CurrentDomain.BaseDirectory);
@@ -1123,7 +1122,7 @@ namespace WebUITestAutomation
 
 
         }
-
+*/
 
         [Test]
         public void PracticeForm_DataDriven()
