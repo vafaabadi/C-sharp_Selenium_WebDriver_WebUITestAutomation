@@ -47,9 +47,11 @@ namespace WebUITestAutomation
         {
             
             driver.Navigate().GoToUrl("https://www.google.com/maps/");
-            Thread.Sleep(2000);
-            driver.FindElementByXPath("//*[@id=\"yDmH0d\"]/c-wiz/div/div/div/div[2]/div[1]/div[3]/div[1]/div[1]/form[1]/div/div/button/span").Click();
-            Thread.Sleep(2000);
+            Thread.Sleep(5000);
+            driver.FindElementByCssSelector("#searchboxinput").Click();
+            Thread.Sleep(5000);
+            driver.FindElementByXPath("//*[@id=\"searchboxinput\"]").SendKeys("England");
+            Thread.Sleep(5000);
             driver.FindElementByXPath("//*[@id=\"searchboxinput\"]").SendKeys("21 Garston Rd, Frome BA11 1RT");
             InputSimulator sim = new InputSimulator();
             sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
