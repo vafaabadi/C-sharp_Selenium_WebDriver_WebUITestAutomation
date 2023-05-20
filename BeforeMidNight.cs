@@ -331,7 +331,7 @@ namespace WebUITestAutomation
 
             Thread.Sleep(5000);
             // click on "Accept" for privacy message box
-            driver.FindElementByXPath("/html/body/div[4]/div/div[3]/div/div/div[2]/div/div/div[1]/button").Click();
+            driver.FindElementByCssSelector("#c8xd8 > div:nth-child(19) > div > div.dDYU.dDYU-mod-theme-default.dDYU-mod-variant-default.dDYU-mod-padding-none.dDYU-mod-position-top.dDYU-mod-direction-none.dDYU-mod-visible.a11y-focus-outlines.dDYU-mod-shadow-elevation-one > div > div > div.dDYU-body > div > div > div.iInN-footer > button > div.Iqt3-button-container").Click();
             Thread.Sleep(3000);
             // click on To? box to select destination
             driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").Click();
