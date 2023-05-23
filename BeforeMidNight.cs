@@ -41,6 +41,7 @@ namespace WebUITestAutomation
             session.FindElementByXPath("//*[@Name='Reload']").Click();
         }
 
+        // dummy comment to trigger Actions.
 
         [Test]
         public void GoogleMaps_TravelTime()
