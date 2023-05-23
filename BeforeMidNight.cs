@@ -126,7 +126,7 @@ namespace WebUITestAutomation
             driver.FindElementByXPath("//*[@id=\"SearchBar\"]/div/span/input").Click();
             Thread.Sleep(2000);
             //type London in Location search box
-            driver.FindElementByXPath("//*[@id=\"centerpoint\"]").SendKeys("London");
+            //driver.FindElementByXPath("//*[@id=\"centerpoint\"]").SendKeys("London");
             //click on Search bttn
             driver.FindElementByXPath("//*[@id=\"jobsearchrefine\"]/div[7]/div/div/div/div/input").Click();
             Thread.Sleep(2000);
