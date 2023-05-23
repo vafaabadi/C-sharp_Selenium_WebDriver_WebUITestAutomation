@@ -54,9 +54,12 @@ namespace WebUITestAutomation
             Thread.Sleep(5000);
             driver.FindElementByXPath("//*[@id=\"searchboxinput\"]").SendKeys("England");
             Thread.Sleep(5000);
-            driver.FindElementByXPath("//*[@id=\"searchboxinput\"]").SendKeys("21 Garston Rd, Frome BA11 1RT");
             InputSimulator sim = new InputSimulator();
             sim.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+            Thread.Sleep(2000);
+            driver.FindElementByXPath("//*[@id=\"searchboxinput\"]").SendKeys("21 Garston Rd, Frome BA11 1RT");
+            InputSimulator sim1 = new InputSimulator();
+            sim1.Keyboard.KeyPress(VirtualKeyCode.RETURN);
             Thread.Sleep(2000);
             //click on Direction icon
             driver.FindElementByXPath("//*[@id=\"QA0Szd\"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[4]/div[1]/button/span/img").Click();
@@ -64,10 +67,10 @@ namespace WebUITestAutomation
             driver.FindElementByXPath("//*[@id=\"omnibox-directions\"]/div/div[3]/div[2]/button/div").Click();
             Thread.Sleep(3000);
             //type in destination
-            driver.FindElementByXPath("//*[@id=\"sb_ifc51\"]/input").SendKeys("31 Springhead, Tunbridge Wells TN2 3NY");
+            driver.FindElementByXPath("//*[@id=\"sb_ifc52\"]/input").SendKeys("31 Springhead, Tunbridge Wells TN2 3NY");
             Thread.Sleep(3000);
-            InputSimulator sim1 = new InputSimulator();
-            sim1.Keyboard.KeyPress(VirtualKeyCode.RETURN);
+            InputSimulator sim2 = new InputSimulator();
+            sim2.Keyboard.KeyPress(VirtualKeyCode.RETURN);
             Thread.Sleep(5000);
             // method of transport: drive
             driver.FindElementByXPath("//*[@id=\"omnibox-directions\"]/div/div[2]/div/div/div/div[2]/button/img").Click();
