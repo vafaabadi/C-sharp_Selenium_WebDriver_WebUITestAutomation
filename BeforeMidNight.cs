@@ -220,148 +220,173 @@ namespace WebUITestAutomation
         }
 
 
-/*        [Test]
-        public void KayakViaGoogleSearch()
-        {
-            
-
-            driver.Navigate().GoToUrl("https://google.com/");
-
-            // Reject all
-            driver.FindElementByCssSelector("#W0wltc > div").Click();
-            // click on search bar
-            driver.FindElementByCssSelector("body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.RNNXgb > div > div.a4bIc > input").Click();
-            // type for suggestions
-            driver.FindElementByCssSelector("body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.RNNXgb > div > div.a4bIc > input").SendKeys("book fli");
-
-            // list of Google suggestions
-            IList<IWebElement> GoogleSuggestions = driver.FindElementsByXPath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div/ul/li/div/div/div[1]/span");
-            //click on book flights online
-
-            int i = 0;
-            foreach (var GoogleSuggestion in GoogleSuggestions)
-            {
-                if (GoogleSuggestion.Text.Equals("book flights online"))
+        /*        [Test]
+                public void KayakViaGoogleSearch()
                 {
-                    driver.FindElementByXPath("(/html/body/div[1]/div[3]/form/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div/ul/li/div/div/div[1]/span)[" + i + "]").Click();
-                    break;
+
+
+                    driver.Navigate().GoToUrl("https://google.com/");
+
+                    // Reject all
+                    driver.FindElementByCssSelector("#W0wltc > div").Click();
+                    // click on search bar
+                    driver.FindElementByCssSelector("body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.RNNXgb > div > div.a4bIc > input").Click();
+                    // type for suggestions
+                    driver.FindElementByCssSelector("body > div.L3eUgb > div.o3j99.ikrT4e.om7nvf > form > div:nth-child(1) > div.A8SBwf > div.RNNXgb > div > div.a4bIc > input").SendKeys("book fli");
+
+                    // list of Google suggestions
+                    IList<IWebElement> GoogleSuggestions = driver.FindElementsByXPath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div/ul/li/div/div/div[1]/span");
+                    //click on book flights online
+
+                    int i = 0;
+                    foreach (var GoogleSuggestion in GoogleSuggestions)
+                    {
+                        if (GoogleSuggestion.Text.Equals("book flights online"))
+                        {
+                            driver.FindElementByXPath("(/html/body/div[1]/div[3]/form/div[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div/ul/li/div/div/div[1]/span)[" + i + "]").Click();
+                            break;
+                        }
+                        i++;
+                    }
+
+                    int j = 0;
+                    // list of Search Results
+                    IList<IWebElement> SearchResults = driver.FindElementsByXPath("//*[@id=\"rso\"]/div/div/div/div/div/a/div/cite");
+                    //click on Kayak website
+                    foreach (var SearchResult in SearchResults)
+                    {
+                        if (SearchResult.Text.Equals("https://www.kayak.co.uk › flights"))
+                        {
+                            j++;
+                            driver.FindElementByXPath("(//*[@id=\"rso\"]/div/div/div/div/div/a/div/cite)[" + j + "]").Click();
+                            break;
+                        }
+                        j++;
+                    }
+
+
+                    Thread.Sleep(4000);
+                    // click on "Accept" for privacy message box
+                    driver.FindElementByXPath("/html/body/div[4]/div/div[3]/div/div/div[2]/div/div/div[1]/button").Click();
+                    Thread.Sleep(3000);
+                    // click on To? box to select destination
+                    driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").Click();
+                    Thread.Sleep(2000);
+                    // type "Ist" in destination box
+                    driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").SendKeys("Ist");
+                    Thread.Sleep(2000);
+                    // assert Istanbul listed
+                    string Istanbul = driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/ul/li[1]/div/div[2]/div/span[1]").Text;
+                    Assert.AreEqual(Istanbul, "Istanbul, Turkey");
+                    // Check box for Istanbul Turkey
+                    driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/ul/li[1]/div/div[3]/span/span/input").Click();
+                    // click on Date - flight out
+                    driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[4]/div/div/div/div[1]/span/span[2]").Click();
+                    Thread.Sleep(3000);
+                    // click on date 31 January 2023
+                    driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/div[37]").Click();
+                    Thread.Sleep(2000);
+                    // click on next month arrow for return
+                    driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/div[2]/div/div[3]/button").Click();
+                    Thread.Sleep(2000);
+                    // click on 24 February for return
+                    driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/div[26]").Click();
+                    Thread.Sleep(2000);
+                    // click on Search icon
+                    driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[5]").Click();
+                    Thread.Sleep(3000);
+
+                    // Search on flight is completed under test case KayakDirect().
+                    driver.Quit();
+
+
+                    foreach (var process in Process.GetProcessesByName("chrome.exe"))
+                    {
+                        process.Kill();
+                    }
+                    foreach (var process in Process.GetProcessesByName("WinAppDriver.exe"))
+                    {
+                        process.Kill();
+                    }
+
+
+
+
+
+
                 }
-                i++;
-            }
 
-            int j = 0;
-            // list of Search Results
-            IList<IWebElement> SearchResults = driver.FindElementsByXPath("//*[@id=\"rso\"]/div/div/div/div/div/a/div/cite");
-            //click on Kayak website
-            foreach (var SearchResult in SearchResults)
-            {
-                if (SearchResult.Text.Equals("https://www.kayak.co.uk › flights"))
-                {
-                    j++;
-                    driver.FindElementByXPath("(//*[@id=\"rso\"]/div/div/div/div/div/a/div/cite)[" + j + "]").Click();
-                    break;
-                }
-                j++;
-            }
+        */
 
 
-            Thread.Sleep(4000);
-            // click on "Accept" for privacy message box
-            driver.FindElementByXPath("/html/body/div[4]/div/div[3]/div/div/div[2]/div/div/div[1]/button").Click();
-            Thread.Sleep(3000);
-            // click on To? box to select destination
-            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").Click();
-            Thread.Sleep(2000);
-            // type "Ist" in destination box
-            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").SendKeys("Ist");
-            Thread.Sleep(2000);
-            // assert Istanbul listed
-            string Istanbul = driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/ul/li[1]/div/div[2]/div/span[1]").Text;
-            Assert.AreEqual(Istanbul, "Istanbul, Turkey");
-            // Check box for Istanbul Turkey
-            driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/ul/li[1]/div/div[3]/span/span/input").Click();
-            // click on Date - flight out
-            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[4]/div/div/div/div[1]/span/span[2]").Click();
-            Thread.Sleep(3000);
-            // click on date 31 January 2023
-            driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/div[37]").Click();
-            Thread.Sleep(2000);
-            // click on next month arrow for return
-            driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/div[2]/div/div[3]/button").Click();
-            Thread.Sleep(2000);
-            // click on 24 February for return
-            driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/div[26]").Click();
-            Thread.Sleep(2000);
-            // click on Search icon
-            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[5]").Click();
-            Thread.Sleep(3000);
-
-            // Search on flight is completed under test case KayakDirect().
-            driver.Quit();
-
-
-            foreach (var process in Process.GetProcessesByName("chrome.exe"))
-            {
-                process.Kill();
-            }
-            foreach (var process in Process.GetProcessesByName("WinAppDriver.exe"))
-            {
-                process.Kill();
-            }
-
-
-
-
-
-
-        }
-
-*/
-
-
-
+/*
 
         [Test]
         public void KayakDirect()
         {
-            
+
 
             driver.Navigate().GoToUrl("https://www.kayak.co.uk/flights");
 
+            driver.Quit();
 
-            Thread.Sleep(3000);
+            new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+            var options = new ChromeOptions();
+            options.AddArgument("no-sandbox");
+            driver = new ChromeDriver(options);
+            driver.Manage().Window.Maximize();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+
+            driver.Navigate().GoToUrl("https://www.kayak.co.uk/flights");
+
+            Thread.Sleep(5000);
             // click on "Accept" for privacy message box
-            driver.FindElementByXPath("//*[@id=\"lgcl\"]/div[7]/div/div[3]/div/div/div[2]/div/div/div[1]/button").Click();
-            Thread.Sleep(3000);
+            driver.FindElementByXPath("//button[contains(., \"No thanks\")]").Click();
+            Thread.Sleep(5000);
             // click on To? box to select destination
-            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").Click();
+            driver.FindElementByXPath("/html/body/div[2]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").Click();
             Thread.Sleep(2000);
             // type "Ist" in destination box
-            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").SendKeys("Ist");
+            driver.FindElementByXPath("/html/body/div[2]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[3]/div/div/input").SendKeys("Ist");
             Thread.Sleep(2000);
             // assert Istanbul listed
-            string Istanbul = driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/ul/li[1]/div/div[2]/div/span[1]").Text;
+            string Istanbul = driver.FindElementByXPath("/html/body/div[7]/div/div[2]/div/ul/li[1]/div/div[2]/div/span[1]").Text;
             Assert.AreEqual(Istanbul, "Istanbul, Turkey");
             // Check box for Istanbul Turkey
-            driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/ul/li[1]/div/div[3]/span/span/input").Click();
+            driver.FindElementByXPath("/html/body/div[7]/div/div[2]/div/ul/li[2]/div/div[4]/span/span/input").Click();
             // click on Date - flight out
-            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[4]/div/div/div/div[1]/span/span[2]").Click();
+            driver.FindElementByXPath("/html/body/div[2]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[4]/div/div/div/div[1]/span/span[2]").Click();
             Thread.Sleep(3000);
-            // click on date 31 January 2023
-            driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/div[37]").Click();
+            // click on date 31 July 2023
+            driver.FindElementByXPath("/html/body/div[7]/div/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/div[36]").Click();
             Thread.Sleep(2000);
             // click on next month arrow for return
-            driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/div[2]/div/div[3]/button").Click();
+            driver.FindElementByCssSelector("#popover > div > div.c2wZD-content > div > div.KK6S-calendarWrapper > div > div.ATGJ-navWrapper.ATGJ-next-month > button > div.Iqt3-button-container > div > span > svg").Click();
             Thread.Sleep(2000);
-            // click on 24 February for return
-            driver.FindElementByXPath("/html/body/div[12]/div/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/div[26]").Click();
-            Thread.Sleep(2000);
+            // click on 21 August for return
+            driver.FindElementByXPath("/html/body/div[7]/div/div[2]/div/div[2]/div/div[2]/div[2]/div[2]/div[32]").Click();
+            Thread.Sleep(1000);
+            
+            //bool FeedbackMsg = driver.FindElementByXPath("//*[@id=\"contents\"]/h2").Displayed;
+            //if (FeedbackMsg == true)
+            //{
+            //    driver.FindElementByXPath("//*[@id=\"contents\"]/a[1]").Click();
+            //}
+            //else
+            //{
+            //    Thread.Sleep(1000);
+            //}
+
             // click on Search icon
-            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div[1]/div[1]/div/div[1]/div/div/section[2]/div/div/div/div/div/div[1]/div[2]/div/div[5]").Click();
+            driver.FindElementByXPath("(//button[@role='button'])[4]").Click();
             Thread.Sleep(3000);
 
+            driver.SwitchTo().Window(driver.WindowHandles.Last());
+            Thread.Sleep(3000);
+
+            Thread.Sleep(3000);
             //click to order based on "Cheapest"
-            driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[2]/div[3]/div/div/div[2]/div[1]/a[1]/div[1]/div").Click();
+            driver.FindElementByXPath("(//div[@class='Hv20-content'])[1]").Click();
             Thread.Sleep(3000);
 
 
@@ -370,8 +395,8 @@ namespace WebUITestAutomation
             for (int k = 0; k < 30; k++)
             {
 
-                // captures names of airlines from the list of flights
-                IList<IWebElement> ListOfLights = driver.FindElementsByXPath("/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[2]/div[5]/div[3]/div[1]/div/div/div/div/div/div/div[3]/div[1]");
+                // captures name of airlines from the list of flights
+                IList<IWebElement> ListOfLights = driver.FindElementsByXPath("/html/body/div[2]/div[1]/main/div/div[2]/div[2]/div[1]/div[2]/div[1]/div[2]/div[5]/div[2]/div/div/div/div/div/div/div/div[3]/div/div[1]");
                 int l = 0;
 
                 foreach (var ListOfLight in ListOfLights)
@@ -401,12 +426,23 @@ namespace WebUITestAutomation
                 else
                 {
                     // click on "show more results"
-                    driver.FindElementByXPath("/html/body/div[1]/div[1]/main/div/div[2]/div[2]/div/div[2]/div[1]/div[3]/div[1]/div/a").Click();
-                    Thread.Sleep(5000);
+                    bool ShowBotton = driver.FindElementByXPath("/html/body/div[2]/div[1]/main/div/div[2]/div[2]/div[1]/div[2]/div[1]/div[3]/div[1]/div/div/div").Displayed;
+                    if(ShowBotton)
+                    {
+                        driver.FindElementByXPath("/html/body/div[2]/div[1]/main/div/div[2]/div[2]/div[1]/div[2]/div[1]/div[3]/div[1]/div/div/div").Click();
+                        Thread.Sleep(5000);
+                    }
+                    else 
+                    { 
+                        break; 
+                    }
+                    
                 }
 
-
             }
+
+
+
 
 
             Assert.IsTrue(isFind, "Unable to find the direct Turkish Airline flight from London to Istanbul for the specified date. Sorry!");
@@ -424,10 +460,9 @@ namespace WebUITestAutomation
                 process.Kill();
             }
 
-
         }
-
-
+        
+*/
 /*        [Test]
         public void DSARform_UpToHooyu()
         {
