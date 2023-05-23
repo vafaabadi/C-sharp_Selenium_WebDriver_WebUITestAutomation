@@ -47,7 +47,9 @@ namespace WebUITestAutomation
         {
             
             driver.Navigate().GoToUrl("https://www.google.com/maps/");
-            Thread.Sleep(5000);
+            //Thread.Sleep(3000);
+            //driver.FindElementByXPath("//*[@id=\"yDmH0d\"]/c-wiz/div/div/div/div[2]/div[1]/div[3]/div[1]/div[1]/form[1]/div/div/button/span").Click();
+            Thread.Sleep(3000);
             driver.FindElementByCssSelector("#searchboxinput").Click();
             Thread.Sleep(5000);
             driver.FindElementByXPath("//*[@id=\"searchboxinput\"]").SendKeys("England");
@@ -60,7 +62,7 @@ namespace WebUITestAutomation
             driver.FindElementByXPath("//*[@id=\"QA0Szd\"]/div/div/div[1]/div[2]/div/div[1]/div/div/div[4]/div[1]/button/span/img").Click();
             //reserve destination to starting point
             driver.FindElementByXPath("//*[@id=\"omnibox-directions\"]/div/div[3]/div[2]/button/div").Click();
-            Thread.Sleep(000);
+            Thread.Sleep(3000);
             //type in destination
             driver.FindElementByXPath("//*[@id=\"sb_ifc52\"]/input").SendKeys("31 Springhead, Tunbridge Wells TN2 3NY");
             InputSimulator sim1 = new InputSimulator();
