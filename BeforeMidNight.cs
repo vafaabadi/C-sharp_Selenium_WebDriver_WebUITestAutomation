@@ -47,9 +47,9 @@ namespace WebUITestAutomation
         {
             
             driver.Navigate().GoToUrl("https://www.google.com/maps/");
-            //Thread.Sleep(3000);
-            //driver.FindElementByXPath("//*[@id=\"yDmH0d\"]/c-wiz/div/div/div/div[2]/div[1]/div[3]/div[1]/div[1]/form[1]/div/div/button/span").Click();
             Thread.Sleep(3000);
+            //driver.FindElementByXPath("//*[@id=\"yDmH0d\"]/c-wiz/div/div/div/div[2]/div[1]/div[3]/div[1]/div[1]/form[1]/div/div/button/span").Click();
+            //Thread.Sleep(3000);
             driver.FindElementByCssSelector("#searchboxinput").Click();
             Thread.Sleep(5000);
             driver.FindElementByXPath("//*[@id=\"searchboxinput\"]").SendKeys("England");
@@ -64,7 +64,8 @@ namespace WebUITestAutomation
             driver.FindElementByXPath("//*[@id=\"omnibox-directions\"]/div/div[3]/div[2]/button/div").Click();
             Thread.Sleep(3000);
             //type in destination
-            driver.FindElementByXPath("//*[@id=\"sb_ifc52\"]/input").SendKeys("31 Springhead, Tunbridge Wells TN2 3NY");
+            driver.FindElementByXPath("//*[@id=\"sb_ifc51\"]/input").SendKeys("31 Springhead, Tunbridge Wells TN2 3NY");
+            Thread.Sleep(3000);
             InputSimulator sim1 = new InputSimulator();
             sim1.Keyboard.KeyPress(VirtualKeyCode.RETURN);
             Thread.Sleep(5000);
@@ -72,7 +73,7 @@ namespace WebUITestAutomation
             driver.FindElementByXPath("//*[@id=\"omnibox-directions\"]/div/div[2]/div/div/div/div[2]/button/img").Click();
             Thread.Sleep(2000);
             string driveDuration = driver.FindElementByXPath("//*[@id=\"section-directions-trip-0\"]/div[1]/div/div[1]/div[1]").Text;
-                                                              //*[@id="section-directions-trip-0"]/div[1]/div/div[1]/div[1]
+                                                              
             string[] count = driveDuration.Split('h');
             int hour = int.Parse(count[0]);
             Thread.Sleep(1000);
