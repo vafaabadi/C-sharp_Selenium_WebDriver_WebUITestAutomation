@@ -68,6 +68,8 @@ namespace WebUITestAutomation
             driver.FindElementByXPath("//*[@id=\"omnibox-directions\"]/div/div[3]/div[2]/button/div").Click();
             Thread.Sleep(3000);
             //type in destination
+            driver.FindElementByCssSelector("#sb_ifc52 > input").Click();
+            Thread.Sleep(1000);
             driver.FindElementByCssSelector("#sb_ifc52 > input").SendKeys("31 Springhead, Tunbridge Wells TN2 3NY");
             Thread.Sleep(3000);
 
