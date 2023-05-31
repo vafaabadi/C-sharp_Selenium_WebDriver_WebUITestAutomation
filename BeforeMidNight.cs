@@ -27,7 +27,7 @@ namespace WebUITestAutomation
     {
 
         //string BaseDirectory_Path = AppDomain.CurrentDomain.BaseDirectory;
-
+        //trigger Ations
         //String WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
 
 
@@ -68,6 +68,8 @@ namespace WebUITestAutomation
             driver.FindElementByXPath("//*[@id=\"omnibox-directions\"]/div/div[3]/div[2]/button/div").Click();
             Thread.Sleep(3000);
             //type in destination
+            driver.FindElementByCssSelector("#sb_ifc52 > input").Click();
+            Thread.Sleep(1000);
             driver.FindElementByCssSelector("#sb_ifc52 > input").SendKeys("31 Springhead, Tunbridge Wells TN2 3NY");
             Thread.Sleep(3000);
 
@@ -118,7 +120,7 @@ namespace WebUITestAutomation
 
 
 
-
+/*
         [Test]
         public void OHO_QA()
         {
@@ -226,7 +228,7 @@ namespace WebUITestAutomation
 
 
         }
-
+*/
 
         /*        [Test]
                 public void KayakViaGoogleSearch()
