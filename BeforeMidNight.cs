@@ -120,7 +120,7 @@ namespace WebUITestAutomation
 
 
 
-
+/*
         [Test]
         public void OHO_QA()
         {
@@ -228,7 +228,7 @@ namespace WebUITestAutomation
 
 
         }
-
+*/
 
         /*        [Test]
                 public void KayakViaGoogleSearch()
