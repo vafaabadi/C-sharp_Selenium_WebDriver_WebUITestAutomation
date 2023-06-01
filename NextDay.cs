@@ -1,4 +1,4 @@
-﻿/*
+﻿
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
@@ -48,14 +48,30 @@ namespace WebUITestAutomation
         SearchMap SearchP;
         PersonalInfoMap PersonalInfo;
 
+        [Test]
+        public void LogIn()
+        {
 
-        //[Test]
-        //public void JustWindoesDriver()
-        //{
-        //    session.FindElementByXPath("//*[@name='Search']").Click();
-        //    session.FindElementByXPath("//tagname[@attribute='value']").Click();
-        //}
+            driver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
+            driver.FindElementByXPath("//input[@name=\"username\"]").Click();
+            driver.FindElementByXPath("//input[@name=\"username\"]").SendKeys("ThisIsUserName");
+            driver.FindElementByXPath("//input[@name=\"password\"]").Click();
+            driver.FindElementByXPath("//input[@name=\"password\"]").SendKeys("ThisIsPassWord");
+            driver.FindElementByXPath("//input[@type='submit']").Click();
+            Thread.Sleep(2000);
+            var isUserName = driver.FindElementByXPath("//*[@id=\"_valueusername\"]").Text;
+            Assert.AreEqual("ThisIsUserName", isUserName);
+            Thread.Sleep(1000);
 
+            driver.Quit();
+
+        }
+
+
+
+
+
+        /*
 
         [Test]
         public void PendingAppForPortfolioManagerPosition()
@@ -276,35 +292,14 @@ namespace WebUITestAutomation
             //Assert.IsTrue(isFind, "Your desired position is not listed at the moment. Sorry!");
 
 
-
-            // 1st   /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/a[6]
-            // 2nd   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[7]
-            // 3rd   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[8]
-            // 4th   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[9]
-            // 5th   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[10]
-            // 6th   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[10]
-            // 7th   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[10]
-            // 8th   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[9]
-            // 9th   'Next' hyperlink disappears
-
-            // 1     /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/span
-            // 2     /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/a[1]
-            // 3     /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/a[2]
-            // 4     /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/a[3]
-            // 5     /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/a[4]
-            // 6     /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/a[5]
-
-
-
-
-
-
-
-
-
-
         }
 
+        */
+
+
+
+
+        /*
 
         [Test]
         //[Test, MaxTime(10000)]
@@ -516,26 +511,12 @@ namespace WebUITestAutomation
             //Assert.IsTrue(isFind, "Your desired position is not listed at the moment. Sorry!");
 
 
-
-            // 1st   /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/a[6]
-            // 2nd   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[7]
-            // 3rd   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[8]
-            // 4th   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[9]
-            // 5th   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[10]
-            // 6th   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[10]
-            // 7th   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[10]
-            // 8th   /html/body/div/main/div/div/section/div[3]/div[1]/div[4]/a[9]
-            // 9th   'Next' hyperlink disappears
-
-            // 1     /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/span
-            // 2     /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/a[1]
-            // 3     /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/a[2]
-            // 4     /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/a[3]
-            // 5     /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/a[4]
-            // 6     /html/body/div/main/div/div/section/div[3]/div[1]/div[3]/a[5]
-
         }
 
+        */
+
+
+        /*
 
         [Test]
         public void FindBook12()
@@ -644,6 +625,11 @@ namespace WebUITestAutomation
 
 
         }
+
+
+        */
+
+        /*
 
 
         [Test]
@@ -810,11 +796,14 @@ namespace WebUITestAutomation
         }
 
 
-
+        */
 
 
 
     }
+
+
+
 
 }
 
@@ -824,4 +813,4 @@ namespace WebUITestAutomation
 
 
 
-*/
+
