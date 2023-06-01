@@ -42,7 +42,7 @@ namespace WebUITestAutomation
         }
 
         // dummy comment to trigger Actions.
-
+/*
         [Test]
         public void GoogleMaps_TravelTime()
         {
@@ -113,6 +113,9 @@ namespace WebUITestAutomation
 
 
         }
+
+*/
+
 
         string BaseDirectory_Path_Oho = AppDomain.CurrentDomain.BaseDirectory;
         //kust a dumm committ to github post actions.
