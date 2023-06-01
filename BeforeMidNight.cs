@@ -42,15 +42,15 @@ namespace WebUITestAutomation
         }
 
         // dummy comment to trigger Actions.
-
+/*
         [Test]
         public void GoogleMaps_TravelTime()
         {
             
             driver.Navigate().GoToUrl("https://www.google.com/maps/");
             Thread.Sleep(3000);
-            //driver.FindElementByXPath("//*[@id=\"yDmH0d\"]/c-wiz/div/div/div/div[2]/div[1]/div[3]/div[1]/div[1]/form[1]/div/div/button/span").Click();
-            //Thread.Sleep(3000);
+            driver.FindElementByXPath("//*[@id=\"yDmH0d\"]/c-wiz/div/div/div/div[2]/div[1]/div[3]/div[1]/div[1]/form[1]/div/div/button/span").Click();
+            Thread.Sleep(3000);
             driver.FindElementByCssSelector("#searchboxinput").Click();
             Thread.Sleep(5000);
             driver.FindElementByXPath("//*[@id=\"searchboxinput\"]").SendKeys("England");
@@ -113,6 +113,9 @@ namespace WebUITestAutomation
 
 
         }
+
+*/
+
 
         string BaseDirectory_Path_Oho = AppDomain.CurrentDomain.BaseDirectory;
         //kust a dumm committ to github post actions.
