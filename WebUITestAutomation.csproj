@@ -480,6 +480,8 @@
   <ItemGroup>
     <Compile Include="BaseCode\SetUp.cs" />
     <Compile Include="BeforeMidNight.cs" />
+    <Compile Include="LogIn_Pages\LogInPage.cs" />
+    <Compile Include="LogIn_Pages\SubmitPage.cs" />
     <Compile Include="NextDay.cs" />
     <Compile Include="LibertyJobSearch_Pages\CurrentOpportunitiesPage.cs" />
     <Compile Include="LibertyJobSearch_Pages\PersonalInfoPage.cs" />
