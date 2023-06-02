@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using UnitTestProject1.LibertyJobSearch_Pages;
+using UnitTestProject1.LogIn_Pages;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager.Helpers;
 using WindowsInput;
@@ -35,7 +36,6 @@ namespace WebUITestAutomation
     {
 
 
-
         float pageCountCompleted_Liberty;
         //string WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
         string BaseDirectory_Path = AppDomain.CurrentDomain.BaseDirectory;
@@ -47,6 +47,11 @@ namespace WebUITestAutomation
         CurrentOpportunitiesMap Opportunities;
         SearchMap SearchP;
         PersonalInfoMap PersonalInfo;
+
+        LogInPage LogInDetails;
+        SubmitPage SubmitDetails;
+
+
 
         [Test]
         public void LogIn()
@@ -68,6 +73,38 @@ namespace WebUITestAutomation
         }
 
 
+
+        [Test]
+        public void LogIn_WithPOM()
+        {
+
+            driver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
+
+            LogInDetails = new LogInPage(driver);
+            LogInDetails.Username.SendKeys("ThisIsUserName");
+            LogInDetails.Password.SendKeys("ThisIsPassWord");
+            LogInDetails.Submit.Click();
+            Thread.Sleep(2000);
+            
+            SubmitDetails = new SubmitPage(driver);
+            var isUserName = SubmitDetails.ValueUsername.Text;
+            Assert.AreEqual("ThisIsUserName", isUserName);
+            var isPassword = SubmitDetails.ValuePassword.Text;
+            Assert.AreEqual("ThisIsPassWord", isPassword);
+
+            Thread.Sleep(1000);
+
+            driver.Quit();
+
+        }
+
+        public void ImageComparison()
+        {
+            driver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
+
+            driver.Quit();
+
+        }
 
 
 
