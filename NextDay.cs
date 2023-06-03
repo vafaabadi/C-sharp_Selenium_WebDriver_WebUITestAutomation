@@ -1,36 +1,20 @@
 ﻿
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Appium.Windows;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Remote;
-using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Diagnostics.Eventing.Reader;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
+using System.Drawing;
 using System.Threading;
-using System.Threading.Tasks;
 using UnitTestProject1.LibertyJobSearch_Pages;
 using UnitTestProject1.LogIn_Pages;
-using WebDriverManager.DriverConfigs.Impl;
-using WebDriverManager.Helpers;
-using WindowsInput;
-using WindowsInput.Native;
-
-
+using ImageMagick;
+using System.Configuration;
 
 namespace WebUITestAutomation
 {
-    
-    
-    
-    
+
+
+
+
     [TestFixture]
     public class NextDay : Base
     {
@@ -52,21 +36,52 @@ namespace WebUITestAutomation
         SubmitPage SubmitDetails;
 
 
+        public static string DecodePassword(string encodedData)
+        {
+            System.Text.UTF8Encoding encoder = new System.Text.UTF8Encoding();
+            System.Text.Decoder utf8Decode = encoder.GetDecoder();
+            byte[] todecode_byte = Convert.FromBase64String(encodedData);
+            int charCount = utf8Decode.GetCharCount(todecode_byte, 0, todecode_byte.Length);
+            char[] decoded_char = new char[charCount];
+            utf8Decode.GetChars(todecode_byte, 0, todecode_byte.Length, decoded_char, 0);
+            string result = new String(decoded_char);
+            return result;
+        }
+
+        public static string ConfigManager(string key)
+        {
+
+            string typeEnv = Environment.GetEnvironmentVariable(key);
+            if (Environment.GetEnvironmentVariable(key) == null)
+            {
+                return ConfigurationManager.AppSettings[key];
+            }
+            else
+            {
+                return Environment.GetEnvironmentVariable(key); 
+            }
+         
+        }
+           
 
         [Test]
         public void LogIn()
         {
+            /*
+            Go to www.base64encode.org. 
+            Paste your username in the top box and then click on 'encode it' to base64 format. 
+            Copy the encoded string and paste it for the value of key="ThisIsEncodedPassWord" under AppSettings in app.config file.
+            Method DecodePassword(string encodedData) decodes the encryoted data
+            Method ConfigManager(string key) reads the keys locally or from pipeline
+             */
 
             driver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
             driver.FindElementByXPath("//input[@name=\"username\"]").Click();
-            driver.FindElementByXPath("//input[@name=\"username\"]").SendKeys("ThisIsUserName");
+            driver.FindElementByXPath("//input[@name=\"username\"]").SendKeys(DecodePassword(ConfigManager("ThisIsEncodedUserName")));
             driver.FindElementByXPath("//input[@name=\"password\"]").Click();
-            driver.FindElementByXPath("//input[@name=\"password\"]").SendKeys("ThisIsPassWord");
+            driver.FindElementByXPath("//input[@name=\"password\"]").SendKeys(DecodePassword(ConfigManager("ThisIsEncodedPassWord")));
             driver.FindElementByXPath("//input[@type='submit']").Click();
             Thread.Sleep(2000);
-            var isUserName = driver.FindElementByXPath("//*[@id=\"_valueusername\"]").Text;
-            Assert.AreEqual("ThisIsUserName", isUserName);
-            Thread.Sleep(1000);
 
             driver.Quit();
 
@@ -78,33 +93,167 @@ namespace WebUITestAutomation
         public void LogIn_WithPOM()
         {
 
+            /*
+            Go to www.base64encode.org. 
+            Paste your username in the top box and then click on 'encode it' to base64 format. 
+            Copy the encoded string and paste it for the value of key="ThisIsEncodedPassWord" under AppSettings in app.config file.
+            Method DecodePassword(string encodedData) decodes the encryoted data
+            Method ConfigManager(string key) reads the keys locally or from pipeline
+             */
+
+
             driver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
 
             LogInDetails = new LogInPage(driver);
-            LogInDetails.Username.SendKeys("ThisIsUserName");
-            LogInDetails.Password.SendKeys("ThisIsPassWord");
+            LogInDetails.Username.SendKeys(DecodePassword(ConfigManager("ThisIsEncodedUserName")));
+            LogInDetails.Password.SendKeys(DecodePassword(ConfigManager("ThisIsEncodedPassWord")));
             LogInDetails.Submit.Click();
             Thread.Sleep(2000);
             
             SubmitDetails = new SubmitPage(driver);
             var isUserName = SubmitDetails.ValueUsername.Text;
-            Assert.AreEqual("ThisIsUserName", isUserName);
+            Assert.AreEqual("admin", isUserName);
             var isPassword = SubmitDetails.ValuePassword.Text;
-            Assert.AreEqual("ThisIsPassWord", isPassword);
+            Assert.AreEqual("adminTala", isPassword);
 
             Thread.Sleep(1000);
 
             driver.Quit();
 
         }
+        /*
+                public void ImageComparison_YandexAShot()
+                {
+                    driver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
 
-        public void ImageComparison()
+                    // Capture screenshots of the images you want to compare
+                    Screenshot image1 = ((ITakesScreenshot)driver).GetScreenshot();
+
+                    // Load the second screenshot
+                    Screenshot image2 = ((ITakesScreenshot)driver).GetScreenshot();
+
+                    // Perform image comparison
+                    diff = new ImageDiff().MakeDiff(image1, image2);
+
+                    // Get the diff area
+                    Rectangle diffArea = diff.DiffBounds;
+
+                    // Get the diff percentage
+                    double diffPercentage = diff.DiffPercent;
+
+                    // Compare the diff area or diff percentage with a threshold and take necessary actions
+                    if (diffPercentage > threshold)
+                    {
+                        // Images are different
+                        // Perform necessary actions
+                    }
+                    else
+                    {
+                        // Images are similar
+                        // Perform necessary actions
+                    }
+
+
+
+
+                    driver.Quit();
+
+                }
+
+
+        */
+
+
+
+
+        [Test]
+        public void ImageComparison_MagickNet()
         {
+            double threshold = 0.5;
+
             driver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
+
+            IWebElement ElementToCapture;
+
+            //Select a specific element 
+            ElementToCapture = driver.FindElement(By.XPath("//tbody"));
+
+            //Get the element Size
+            int The_Element_Width = ElementToCapture.Size.Width;
+            int The_Element_Height = ElementToCapture.Size.Height;
+
+            //Get the Element location Via X/Y coordinates
+            int The_Element_Location_X = ElementToCapture.Location.X;
+            int The_Element_Location_Y = ElementToCapture.Location.Y;
+
+            //Creating the Rectangle that we going to use to extract the element
+            Rectangle ObservedImage = new Rectangle(The_Element_Location_X, The_Element_Location_Y, The_Element_Width, The_Element_Height);
+
+            //Take a Screenshot and save it on a TMP file
+            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg", ScreenshotImageFormat.Jpeg);
+
+            // Load the captured screenshots
+            using (var image1 = new MagickImage(AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg"))
+            using (var image2 = new MagickImage(AppDomain.CurrentDomain.BaseDirectory + "\\ActualImage.Jpeg"))
+            {
+                // Set the desired image comparison metric
+                image1.Compare(image2, ErrorMetric.MeanSquared);
+
+                // Get the difference value
+                double difference = image1.Compare(image2, ErrorMetric.MeanSquared);
+
+                // Perform thresholding or other operations based on the difference value
+                if (difference > threshold)
+                {
+                    // Images are different
+                    Assert.Fail();
+                    Console.WriteLine("observed image is different to actual image");
+                    // Perform necessary actions
+                }
+                else
+                {
+                    Console.WriteLine("observed image is the same as actual image");
+                    // Images are similar
+                    // Perform necessary actions
+                }
+            }
+
+            
 
             driver.Quit();
 
+
+
+
+
         }
+
+
+            ////import The File that we save earlier
+            //Bitmap ImportFile = new Bitmap("C:\\Users\\44741\\source\\repos\\UnitTestProject1");
+
+            ////Clone and extract the requested Element (Based on our Rectangle)
+            //Bitmap CloneFile = (Bitmap)ImportFile.Clone(ObservedImage, ImportFile.PixelFormat);
+
+            ////Save extracted file 
+            //CloneFile.Save("c:\\Screenshot Example\\SpecificWebElement.png");
+
+            ////Dispose and Remove TMP file
+            //ImportFile.Dispose();
+            //File.Delete("c:\\Screenshot Example\\ImageFormat.png");
+
+
+
+
+
+
+
+
+
+
+
+            
+        
 
 
 
