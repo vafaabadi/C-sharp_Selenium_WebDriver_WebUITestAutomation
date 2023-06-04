@@ -169,7 +169,7 @@ namespace WebUITestAutomation
         [Test]
         public void ImageComparison_MagickNet()
         {
-            double threshold = 0.5;
+            double threshold = 0.1;
 
             driver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
 
@@ -207,12 +207,12 @@ namespace WebUITestAutomation
                 {
                     // Images are different
                     Assert.Fail();
-                    Console.WriteLine("observed image is different to actual image");
+                    Console.WriteLine("observed image is different to the actual image");
                     // Perform necessary actions
                 }
                 else
                 {
-                    Console.WriteLine("observed image is the same as actual image");
+                    Console.WriteLine("observed image is the same as the actual image");
                     // Images are similar
                     // Perform necessary actions
                 }
