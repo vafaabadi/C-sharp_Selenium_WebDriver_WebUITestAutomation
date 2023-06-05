@@ -1,9 +1,12 @@
 ﻿using AventStack.ExtentReports;
+using Microsoft.Extensions.Options;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Appium.Windows;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using System;
 using System.Diagnostics;
@@ -21,6 +24,8 @@ namespace WebUITestAutomation
 
         public WindowsDriver<WindowsElement> session;
         public ChromeDriver driver;
+        public FirefoxDriver firefoxDriver;
+        public EdgeDriver edgeDriver;
 
         public string BaseDirectory_Path = AppDomain.CurrentDomain.BaseDirectory;
 
@@ -49,19 +54,28 @@ namespace WebUITestAutomation
             //DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
             //desktopCapabilities.SetCapability("app", "Root");
             //WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
-            
+
             //to kick start Selenium ChromeDriver
             new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
-            var options = new ChromeOptions();
-            options.AddArgument("incognito");
-            //options.AddArgument("no-sandbox");
-
-
-            //starting browser
-            driver = new ChromeDriver(options);
-
+            var optionsChrome = new ChromeOptions();
+            optionsChrome.AddArgument("incognito");
+            driver = new ChromeDriver(optionsChrome);
             driver.Manage().Window.Maximize();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+
+            //new WebDriverManager.DriverManager().SetUpDriver(new FirefoxConfig());
+            //FirefoxOptions optionsFirefox = new FirefoxOptions();
+            //optionsFirefox.SetPreference("browser.privatebrowsing.autostart", true);
+            //firefoxDriver = new FirefoxDriver(optionsFirefox);
+            //firefoxDriver.Manage().Window.Maximize();
+            //firefoxDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+
+            //new WebDriverManager.DriverManager().SetUpDriver(new EdgeConfig());
+            //EdgeOptions optionsEdge = new EdgeOptions();
+            //optionsEdge.AddAdditionalCapability("ms:inPrivate", true);
+            //edgeDriver = new EdgeDriver(optionsEdge);
+            //edgeDriver.Manage().Window.Maximize();
+            //edgeDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
 
 
 
@@ -101,6 +115,8 @@ namespace WebUITestAutomation
             try
             {
                 driver?.Quit();
+                //firefoxDriver?.Quit();
+                //edgeDriver?.Quit();
             }
             catch (Exception)
             {
