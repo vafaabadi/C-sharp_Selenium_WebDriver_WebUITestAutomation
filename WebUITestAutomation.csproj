@@ -63,8 +63,8 @@
     <Reference Include="ExtentReports, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ExtentReports.4.1.0\lib\netstandard2.0\ExtentReports.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=1.4.0.12, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>packages\SharpZipLib.1.4.0\lib\netstandard2.0\ICSharpCode.SharpZipLib.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.4.1.12, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>packages\SharpZipLib.1.4.1\lib\netstandard2.0\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="Magick.NET-Q16-AnyCPU, Version=13.1.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
       <HintPath>packages\Magick.NET-Q16-AnyCPU.13.1.2\lib\netstandard20\Magick.NET-Q16-AnyCPU.dll</HintPath>
@@ -477,7 +477,7 @@
       <HintPath>packages\Selenium.Support.3.11.0\lib\net45\WebDriver.Support.dll</HintPath>
     </Reference>
     <Reference Include="WebDriverManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\WebDriverManager.2.16.0\lib\net461\WebDriverManager.dll</HintPath>
+      <HintPath>packages\WebDriverManager.2.16.2\lib\net461\WebDriverManager.dll</HintPath>
     </Reference>
     <Reference Include="WindowsInput, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9b287f7dc5073cad, processorArchitecture=MSIL">
       <HintPath>packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>

@@ -65,7 +65,7 @@ namespace WebUITestAutomation
            
 
         [Test]
-        public void LogIn()
+        public void LogIn_Chrome()
         {
             /*
             Go to www.base64encode.org. 
@@ -89,8 +89,34 @@ namespace WebUITestAutomation
 
 
 
+/*
         [Test]
-        public void LogIn_WithPOM()
+        public void LogIn_Firefox()
+        {
+            //
+            //Go to www.base64encode.org. 
+            //Paste your username in the top box and then click on 'encode it' to base64 format. 
+            //Copy the encoded string and paste it for the value of key="ThisIsEncodedPassWord" under AppSettings in app.config file.
+            //Method DecodePassword(string encodedData) decodes the encryoted data
+            //Method ConfigManager(string key) reads the keys locally or from pipeline
+            // 
+
+            firefoxDriver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
+            firefoxDriver.FindElementByXPath("//input[@name=\"username\"]").Click();
+            firefoxDriver.FindElementByXPath("//input[@name=\"username\"]").SendKeys(DecodePassword(ConfigManager("ThisIsEncodedUserName")));
+            firefoxDriver.FindElementByXPath("//input[@name=\"password\"]").Click();
+            firefoxDriver.FindElementByXPath("//input[@name=\"password\"]").SendKeys(DecodePassword(ConfigManager("ThisIsEncodedPassWord")));
+            firefoxDriver.FindElementByXPath("//input[@type='submit']").Click();
+            Thread.Sleep(2000);
+
+            driver.Quit();
+
+        }
+
+*/
+
+        [Test]
+        public void LogIn_WithPOM_Chrome()
         {
 
             /*
@@ -121,16 +147,70 @@ namespace WebUITestAutomation
             driver.Quit();
 
         }
-        /*
+
+
+/*
+        [Test]
+        public void LogIn_WithPOM_Firefox()
+        {
+
+            
+            //Go to www.base64encode.org. 
+            //Paste your username in the top box and then click on 'encode it' to base64 format. 
+            //Copy the encoded string and paste it for the value of key="ThisIsEncodedPassWord" under AppSettings in app.config file.
+            //Method DecodePassword(string encodedData) decodes the encryoted data
+            //Method ConfigManager(string key) reads the keys locally or from pipeline
+             
+
+
+            firefoxDriver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
+
+            LogInDetails = new LogInPage(firefoxDriver);
+            LogInDetails.Username.SendKeys(DecodePassword(ConfigManager("ThisIsEncodedUserName")));
+            LogInDetails.Password.SendKeys(DecodePassword(ConfigManager("ThisIsEncodedPassWord")));
+            LogInDetails.Submit.Click();
+            Thread.Sleep(2000);
+
+            SubmitDetails = new SubmitPage(firefoxDriver);
+            var isUserName = SubmitDetails.ValueUsername.Text;
+            Assert.AreEqual("admin", isUserName);
+            var isPassword = SubmitDetails.ValuePassword.Text;
+            Assert.AreEqual("adminTala", isPassword);
+
+            Thread.Sleep(1000);
+
+            firefoxDriver.Quit();
+
+        }
+*/
+
+
+/*
                 public void ImageComparison_YandexAShot()
                 {
                     driver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
+
+                    IWebElement ElementToCapture;
+
+                    //Select a specific element 
+                    ElementToCapture = driver.FindElement(By.XPath("//tbody"));
+
+                    //Get the element Size
+                    int The_Element_Width = ElementToCapture.Size.Width;
+                    int The_Element_Height = ElementToCapture.Size.Height;
+
+                    //Get the Element location Via X/Y coordinates
+                    int The_Element_Location_X = ElementToCapture.Location.X;
+                    int The_Element_Location_Y = ElementToCapture.Location.Y;
+
+                    //Creating the Rectangle that we going to use to extract the element
+                    Rectangle ObservedImage = new Rectangle(The_Element_Location_X, The_Element_Location_Y, The_Element_Width, The_Element_Height);
 
                     // Capture screenshots of the images you want to compare
                     Screenshot image1 = ((ITakesScreenshot)driver).GetScreenshot();
 
                     // Load the second screenshot
-                    Screenshot image2 = ((ITakesScreenshot)driver).GetScreenshot();
+                    Screenshot image2 = AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg";
 
                     // Perform image comparison
                     diff = new ImageDiff().MakeDiff(image1, image2);
@@ -145,29 +225,30 @@ namespace WebUITestAutomation
                     if (diffPercentage > threshold)
                     {
                         // Images are different
+                        Assert.Fail();
+                        Console.WriteLine("observed image is different to the actual image");
                         // Perform necessary actions
                     }
                     else
                     {
+                        Console.WriteLine("observed image is the same as the actual image");
                         // Images are similar
                         // Perform necessary actions
                     }
-
-
 
 
                     driver.Quit();
 
                 }
 
+*/
 
-        */
 
 
 
 
         [Test]
-        public void ImageComparison_MagickNet()
+        public void ImageComparison_MagickNet_Chrome()
         {
             double threshold = 0.5;
 
@@ -219,28 +300,84 @@ namespace WebUITestAutomation
             }
 
             
-
             driver.Quit();
-
-
-
 
 
         }
 
+/*
+        [Test]
+        public void ImageComparison_MagickNet_Firefox()
+        {
+            double threshold = 0.1;
 
-            ////import The File that we save earlier
-            //Bitmap ImportFile = new Bitmap("C:\\Users\\44741\\source\\repos\\UnitTestProject1");
+            firefoxDriver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
 
-            ////Clone and extract the requested Element (Based on our Rectangle)
-            //Bitmap CloneFile = (Bitmap)ImportFile.Clone(ObservedImage, ImportFile.PixelFormat);
+            IWebElement ElementToCapture;
 
-            ////Save extracted file 
-            //CloneFile.Save("c:\\Screenshot Example\\SpecificWebElement.png");
+            //Select a specific element 
+            ElementToCapture = firefoxDriver.FindElement(By.XPath("//tbody"));
 
-            ////Dispose and Remove TMP file
-            //ImportFile.Dispose();
-            //File.Delete("c:\\Screenshot Example\\ImageFormat.png");
+            //Get the element Size
+            int The_Element_Width = ElementToCapture.Size.Width;
+            int The_Element_Height = ElementToCapture.Size.Height;
+
+            //Get the Element location Via X/Y coordinates
+            int The_Element_Location_X = ElementToCapture.Location.X;
+            int The_Element_Location_Y = ElementToCapture.Location.Y;
+
+            //Creating the Rectangle that we going to use to extract the element
+            Rectangle ObservedImage = new Rectangle(The_Element_Location_X, The_Element_Location_Y, The_Element_Width, The_Element_Height);
+
+            //Take a Screenshot and save it on a TMP file
+            ((ITakesScreenshot)firefoxDriver).GetScreenshot().SaveAsFile(AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg", ScreenshotImageFormat.Jpeg);
+
+            // Load the captured screenshots
+            using (var image1 = new MagickImage(AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg"))
+            using (var image2 = new MagickImage(AppDomain.CurrentDomain.BaseDirectory + "\\ActualImage.Jpeg"))
+            {
+                // Set the desired image comparison metric
+                image1.Compare(image2, ErrorMetric.MeanSquared);
+
+                // Get the difference value
+                double difference = image1.Compare(image2, ErrorMetric.MeanSquared);
+
+                // Perform thresholding or other operations based on the difference value
+                if (difference > threshold)
+                {
+                    // Images are different
+                    Assert.Fail();
+                    Console.WriteLine("observed image is different to the actual image");
+                    // Perform necessary actions
+                }
+                else
+                {
+                    Console.WriteLine("observed image is the same as the actual image");
+                    // Images are similar
+                    // Perform necessary actions
+                }
+            }
+
+            driver.Quit();
+
+
+        }
+
+*/
+
+
+        ////import The File that we save earlier
+        //Bitmap ImportFile = new Bitmap("C:\\Users\\44741\\source\\repos\\UnitTestProject1");
+
+        ////Clone and extract the requested Element (Based on our Rectangle)
+        //Bitmap CloneFile = (Bitmap)ImportFile.Clone(ObservedImage, ImportFile.PixelFormat);
+
+        ////Save extracted file 
+        //CloneFile.Save("c:\\Screenshot Example\\SpecificWebElement.png");
+
+        ////Dispose and Remove TMP file
+        //ImportFile.Dispose();
+        //File.Delete("c:\\Screenshot Example\\ImageFormat.png");
 
 
 
@@ -252,8 +389,8 @@ namespace WebUITestAutomation
 
 
 
-            
-        
+
+
 
 
 
