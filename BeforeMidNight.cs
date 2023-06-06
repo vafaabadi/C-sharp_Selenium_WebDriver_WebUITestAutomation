@@ -32,7 +32,7 @@ namespace WebUITestAutomation
 
 
         [Test]
-        public void JustWindoesDriver()
+        public void JustWindowsDriver()
         {
             DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
             desktopCapabilities.SetCapability("app", "Root");
