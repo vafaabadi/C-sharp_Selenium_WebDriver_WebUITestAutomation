@@ -36,10 +36,7 @@ namespace WebUITestAutomation
 
         LogInPage LogInDetails;
         SubmitPage SubmitDetails;
-        private int pictureLocationX;
-        private int pictureLocationY;
-        private int pictureWidth;
-        private int pictureHeight;
+
         private IWebElement ElementToCapture;
 
         public static string DecodePassword(string encodedData)
