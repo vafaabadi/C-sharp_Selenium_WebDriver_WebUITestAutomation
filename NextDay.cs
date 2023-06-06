@@ -8,6 +8,8 @@ using UnitTestProject1.LibertyJobSearch_Pages;
 using UnitTestProject1.LogIn_Pages;
 using ImageMagick;
 using System.Configuration;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace WebUITestAutomation
 {
@@ -34,7 +36,11 @@ namespace WebUITestAutomation
 
         LogInPage LogInDetails;
         SubmitPage SubmitDetails;
-
+        private int pictureLocationX;
+        private int pictureLocationY;
+        private int pictureWidth;
+        private int pictureHeight;
+        private IWebElement ElementToCapture;
 
         public static string DecodePassword(string encodedData)
         {
@@ -250,28 +256,39 @@ namespace WebUITestAutomation
         [Test]
         public void ImageComparison_MagickNet_Chrome()
         {
-            double threshold = 0.1;
 
-            driver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
+            //threshols ranges from 0 to 1. closer to 0 is more accurate and closer to 1 is least accurate.
+            double threshold = 0.09;
 
-            IWebElement ElementToCapture;
+            driver.Navigate().GoToUrl("https://rahulshettyacademy.com/");
+
+            //IWebElement ElementToCapture;
+
+            Thread.Sleep(2000);
 
             //Select a specific element 
-            ElementToCapture = driver.FindElement(By.XPath("//tbody"));
+            ElementToCapture = driver.FindElement(By.XPath("/html/body/div/header/div[3]/div/div/div[1]/div/a/img"));
+
+            //Take a full - page screenshot
+            Screenshot fullPageScreenshot = ((ITakesScreenshot)driver).GetScreenshot();
 
             //Get the element Size
-            int The_Element_Width = ElementToCapture.Size.Width;
-            int The_Element_Height = ElementToCapture.Size.Height;
+            int pictureWidth = ElementToCapture.Size.Width;
+            int pictureHeight = ElementToCapture.Size.Height;
 
             //Get the Element location Via X/Y coordinates
-            int The_Element_Location_X = ElementToCapture.Location.X;
-            int The_Element_Location_Y = ElementToCapture.Location.Y;
+            int pictureLocationX = ElementToCapture.Location.X;
+            int pictureLocationY = ElementToCapture.Location.Y;
 
-            //Creating the Rectangle that we going to use to extract the element
-            Rectangle ObservedImage = new Rectangle(The_Element_Location_X, The_Element_Location_Y, The_Element_Width, The_Element_Height);
+            //Crop the screenshot to capture only the picture
+            Bitmap croppedImage = CropImage(fullPageScreenshot, pictureLocationX, pictureLocationY, pictureWidth, pictureHeight);
+
+            //Save the cropped image to a file
+            croppedImage.Save(AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg", ImageFormat.Jpeg);
+
 
             //Take a Screenshot and save it on a TMP file
-            ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg", ScreenshotImageFormat.Jpeg);
+            //((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg", ScreenshotImageFormat.Jpeg);
 
             // Load the captured screenshots
             using (var image1 = new MagickImage(AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg"))
@@ -291,6 +308,9 @@ namespace WebUITestAutomation
                     Console.WriteLine("observed image is different to the actual image");
                     // Perform necessary actions
                 }
+
+
+
                 else
                 {
                     Console.WriteLine("observed image is the same as the actual image");
@@ -298,72 +318,82 @@ namespace WebUITestAutomation
                     // Perform necessary actions
                 }
             }
-
-            
             driver.Quit();
-
-
         }
-
-/*
-        [Test]
-        public void ImageComparison_MagickNet_Firefox()
+        private Bitmap CropImage(Screenshot screenshot, int x, int y, int width, int height)
         {
-            double threshold = 0.1;
-
-            firefoxDriver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
-
-            IWebElement ElementToCapture;
-
-            //Select a specific element 
-            ElementToCapture = firefoxDriver.FindElement(By.XPath("//tbody"));
-
-            //Get the element Size
-            int The_Element_Width = ElementToCapture.Size.Width;
-            int The_Element_Height = ElementToCapture.Size.Height;
-
-            //Get the Element location Via X/Y coordinates
-            int The_Element_Location_X = ElementToCapture.Location.X;
-            int The_Element_Location_Y = ElementToCapture.Location.Y;
-
-            //Creating the Rectangle that we going to use to extract the element
-            Rectangle ObservedImage = new Rectangle(The_Element_Location_X, The_Element_Location_Y, The_Element_Width, The_Element_Height);
-
-            //Take a Screenshot and save it on a TMP file
-            ((ITakesScreenshot)firefoxDriver).GetScreenshot().SaveAsFile(AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg", ScreenshotImageFormat.Jpeg);
-
-            // Load the captured screenshots
-            using (var image1 = new MagickImage(AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg"))
-            using (var image2 = new MagickImage(AppDomain.CurrentDomain.BaseDirectory + "\\ActualImage.Jpeg"))
-            {
-                // Set the desired image comparison metric
-                image1.Compare(image2, ErrorMetric.MeanSquared);
-
-                // Get the difference value
-                double difference = image1.Compare(image2, ErrorMetric.MeanSquared);
-
-                // Perform thresholding or other operations based on the difference value
-                if (difference > threshold)
-                {
-                    // Images are different
-                    Assert.Fail();
-                    Console.WriteLine("observed image is different to the actual image");
-                    // Perform necessary actions
-                }
-                else
-                {
-                    Console.WriteLine("observed image is the same as the actual image");
-                    // Images are similar
-                    // Perform necessary actions
-                }
-            }
-
-            driver.Quit();
-
-
+            Bitmap fullImage = new Bitmap(new MemoryStream(screenshot.AsByteArray));
+            Rectangle cropRect = new Rectangle(x, y, width, height);
+            Bitmap croppedImage = fullImage.Clone(cropRect, fullImage.PixelFormat);
+            fullImage.Dispose();
+            return croppedImage;
         }
 
-*/
+
+
+
+
+
+
+        /*
+                [Test]
+                public void ImageComparison_MagickNet_Firefox()
+                {
+                    double threshold = 0.1;
+
+                    firefoxDriver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
+
+                    IWebElement ElementToCapture;
+
+                    //Select a specific element 
+                    ElementToCapture = firefoxDriver.FindElement(By.XPath("//tbody"));
+
+                    //Get the element Size
+                    int The_Element_Width = ElementToCapture.Size.Width;
+                    int The_Element_Height = ElementToCapture.Size.Height;
+
+                    //Get the Element location Via X/Y coordinates
+                    int The_Element_Location_X = ElementToCapture.Location.X;
+                    int The_Element_Location_Y = ElementToCapture.Location.Y;
+
+                    //Creating the Rectangle that we going to use to extract the element
+                    Rectangle ObservedImage = new Rectangle(The_Element_Location_X, The_Element_Location_Y, The_Element_Width, The_Element_Height);
+
+                    //Take a Screenshot and save it on a TMP file
+                    ((ITakesScreenshot)firefoxDriver).GetScreenshot().SaveAsFile(AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg", ScreenshotImageFormat.Jpeg);
+
+                    // Load the captured screenshots
+                    using (var image1 = new MagickImage(AppDomain.CurrentDomain.BaseDirectory + "\\ObservedImage.Jpeg"))
+                    using (var image2 = new MagickImage(AppDomain.CurrentDomain.BaseDirectory + "\\ActualImage.Jpeg"))
+                    {
+                        // Set the desired image comparison metric
+                        image1.Compare(image2, ErrorMetric.MeanSquared);
+
+                        // Get the difference value
+                        double difference = image1.Compare(image2, ErrorMetric.MeanSquared);
+
+                        // Perform thresholding or other operations based on the difference value
+                        if (difference > threshold)
+                        {
+                            // Images are different
+                            Assert.Fail();
+                            Console.WriteLine("observed image is different to the actual image");
+                            // Perform necessary actions
+                        }
+                        else
+                        {
+                            Console.WriteLine("observed image is the same as the actual image");
+                            // Images are similar
+                            // Perform necessary actions
+                        }
+                    }
+
+                    driver.Quit();
+
+
+                }
+
+        */
 
 
         ////import The File that we save earlier
