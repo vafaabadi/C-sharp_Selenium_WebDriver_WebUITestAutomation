@@ -24,8 +24,8 @@ namespace WebUITestAutomation
 
         public WindowsDriver<WindowsElement> session;
         public ChromeDriver driver;
-        public FirefoxDriver firefoxDriver;
-        public EdgeDriver edgeDriver;
+        //public FirefoxDriver firefoxDriver;
+        //public EdgeDriver edgeDriver;
 
         public string BaseDirectory_Path = AppDomain.CurrentDomain.BaseDirectory;
 
