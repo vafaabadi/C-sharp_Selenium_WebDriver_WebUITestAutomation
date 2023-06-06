@@ -305,7 +305,7 @@ namespace WebUITestAutomation
                 {
                     // Images are different
                     Assert.Fail();
-                    Console.WriteLine("observed image is different to actual image");
+                    Console.WriteLine("observed image is different to the actual image");
                     // Perform necessary actions
                 }
 
@@ -313,7 +313,7 @@ namespace WebUITestAutomation
 
                 else
                 {
-                    Console.WriteLine("observed image is the same as actual image");
+                    Console.WriteLine("observed image is the same as the actual image");
                     // Images are similar
                     // Perform necessary actions
                 }
