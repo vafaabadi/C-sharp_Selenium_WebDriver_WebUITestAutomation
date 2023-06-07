@@ -14,10 +14,11 @@ using System.IO;
 namespace WebUITestAutomation
 {
 
-
+    // trigger both yaml files: all test cases and NextDay only.
 
 
     [TestFixture]
+    [Category("NextDay")]
     public class NextDay : Base
     {
 
