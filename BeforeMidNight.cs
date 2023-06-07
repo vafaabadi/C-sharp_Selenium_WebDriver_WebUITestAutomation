@@ -20,7 +20,7 @@ using NUnit.Framework.Interfaces;
 namespace WebUITestAutomation
 {
 
-
+    // trigger CI
 
     [TestFixture]
     [Category("BeforeMidNight")]
