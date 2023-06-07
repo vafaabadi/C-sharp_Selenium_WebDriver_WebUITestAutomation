@@ -23,6 +23,7 @@ namespace WebUITestAutomation
 
 
     [TestFixture]
+    [Category("BeforeMidNight")]
     public class BeforeMidNight : Base
     {
 
