@@ -18,6 +18,7 @@ namespace WebUITestAutomation
 
 
     [TestFixture]
+    [Category("NextDay")]
     public class NextDay : Base
     {
 

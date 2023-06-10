@@ -20,16 +20,18 @@ using NUnit.Framework.Interfaces;
 namespace WebUITestAutomation
 {
 
-
+    // trigger CI
+    // trigger all three yaml files
 
     [TestFixture]
+    [Category("BeforeMidNight")]
     public class BeforeMidNight : Base
     {
 
         //string BaseDirectory_Path = AppDomain.CurrentDomain.BaseDirectory;
         //trigger Ations
         //String WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
-
+        //
 
         [Test]
         public void JustWindowsDriver()
