@@ -21,6 +21,7 @@ namespace WebUITestAutomation
 {
 
     // trigger CI
+    // trigger all three yaml files
 
     [TestFixture]
     [Category("BeforeMidNight")]
