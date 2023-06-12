@@ -249,7 +249,7 @@ namespace WebUITestAutomation
 
 
 
-
+        //
 
         [Test]
         public void ImageComparison_MagickNet_Chrome()
