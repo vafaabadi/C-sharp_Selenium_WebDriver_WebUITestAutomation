@@ -488,12 +488,13 @@
     <Compile Include="BeforeMidNight.cs" />
     <Compile Include="LogIn_Pages\LogInPage.cs" />
     <Compile Include="LogIn_Pages\SubmitPage.cs" />
-    <Compile Include="NextDay.cs" />
+    <Compile Include="NextDay01.cs" />
     <Compile Include="LibertyJobSearch_Pages\CurrentOpportunitiesPage.cs" />
     <Compile Include="LibertyJobSearch_Pages\PersonalInfoPage.cs" />
     <Compile Include="LibertyJobSearch_Pages\SearchPage.cs" />
     <Compile Include="LibertyJobSearch_Pages\WorkingForUsPage.cs" />
     <Compile Include="LibertyJobSearch_Pages\FirstPublicPage.cs" />
+    <Compile Include="NextDay02.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseCode\Base.cs" />
   </ItemGroup>
