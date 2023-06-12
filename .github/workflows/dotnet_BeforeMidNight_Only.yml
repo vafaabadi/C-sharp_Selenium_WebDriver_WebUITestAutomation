@@ -1,4 +1,4 @@
-name: Run BeforeMidnight Test Cases Only
+name: Run BeforeMidnight Only
 
 on:
   push:
