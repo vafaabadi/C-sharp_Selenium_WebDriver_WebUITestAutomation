@@ -1,4 +1,4 @@
-name: Run BeforeMidNight and NextDay
+name: Run BeforeMidNight and NextDay01
 
 on:
   push:
