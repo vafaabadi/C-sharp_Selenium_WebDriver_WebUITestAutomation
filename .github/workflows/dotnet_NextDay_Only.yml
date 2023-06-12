@@ -1,4 +1,4 @@
-name: Run NextDay Test Cases Only
+name: Run NextDay Only
 
 on:
   push:
