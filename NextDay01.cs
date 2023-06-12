@@ -18,8 +18,8 @@ namespace WebUITestAutomation
 
 
     [TestFixture]
-    [Category("NextDay")]
-    public class NextDay : Base
+    [Category("NextDay01")]
+    public class NextDay01 : Base
     {
 
 
@@ -67,32 +67,6 @@ namespace WebUITestAutomation
          
         }
            
-
-        [Test]
-        public void LogIn_Chrome()
-        {
-            /*
-            Go to www.base64encode.org. 
-            Paste your username in the top box and then click on 'encode it' to base64 format. 
-            Copy the encoded string and paste it for the value of key="ThisIsEncodedPassWord" under AppSettings in app.config file.
-            Method DecodePassword(string encodedData) decodes the encryoted data
-            Method ConfigManager(string key) reads the keys locally or from pipeline
-             */
-
-            driver.Navigate().GoToUrl("https://testpages.herokuapp.com/basic_html_form.html");
-            driver.FindElementByXPath("//input[@name=\"username\"]").Click();
-            driver.FindElementByXPath("//input[@name=\"username\"]").SendKeys(DecodePassword(ConfigManager("ThisIsEncodedUserName")));
-            driver.FindElementByXPath("//input[@name=\"password\"]").Click();
-            driver.FindElementByXPath("//input[@name=\"password\"]").SendKeys(DecodePassword(ConfigManager("ThisIsEncodedPassWord")));
-            driver.FindElementByXPath("//input[@type='submit']").Click();
-            Thread.Sleep(2000);
-
-            driver.Quit();
-
-        }
-
-
-
 /*
         [Test]
         public void LogIn_Firefox()

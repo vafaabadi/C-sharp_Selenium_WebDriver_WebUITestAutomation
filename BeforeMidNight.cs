@@ -33,15 +33,7 @@ namespace WebUITestAutomation
         //String WinDriver = "C:\\Program Files\\Windows Application Driver\\WinAppDriver.exe";
         //
 
-        [Test]
-        public void JustWindowsDriver()
-        {
-            DesiredCapabilities desktopCapabilities = new DesiredCapabilities();
-            desktopCapabilities.SetCapability("app", "Root");
-            WindowsDriver<WindowsElement> session = new WindowsDriver<WindowsElement>(new Uri("http://127.0.0.1:4723"), desktopCapabilities);
-
-            session.FindElementByXPath("//*[@Name='Reload']").Click();
-        }
+        
 
         // dummy comment to trigger Actions.
 /*
