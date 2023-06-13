@@ -25,6 +25,7 @@ namespace WebUITestAutomation
 
     [TestFixture]
     [Category("BeforeMidNight")]
+    //[Parallelizable(scope: ParallelScope.Children)]
     public class BeforeMidNight : Base
     {
 
